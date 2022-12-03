@@ -1,5 +1,5 @@
 {
-  "name": "truffle-client",
+  "name": "linos-client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -15,6 +15,9 @@
     "@types/node": "^18.11.9",
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.9",
+    "buffer": "^6.0.3",
+    "ipfs-core": "^0.17.0",
+    "ipfs-core-types": "^0.13.0",
     "lodash.uniq": "^4.5.0",
     "notistack": "^2.0.8",
     "react": "^18.2.0",

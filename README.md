@@ -1,9 +1,4 @@
-# Voting DApp
-
-This project has 2 branches :
-
-- main => dev / edit / whatever
-- goerli => This branch contains the contract + valid adress on the goerli test-net, you can just do yarn start and test the projet there.
+# Linos Project
 
 ## Demo Links
 

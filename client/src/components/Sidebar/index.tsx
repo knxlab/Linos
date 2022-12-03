@@ -1,23 +1,9 @@
-import { Divider, Drawer, List, ListItem, ListItemButton, ListItemText } from '@mui/material';
-import React from 'react';
+import { Drawer, List, ListItem, ListItemButton, ListItemText } from '@mui/material';
 import Title from '../../Layout/Title';
-import VotingSession from '../../Types/VotingSession';
-import CreateVotingSessionButton from '../CreateVotingSession/ButtonCreate';
-import styles from './styles.module.css';
 
 const drawerWidth = 240;
 
-export default function Sidebar({
-    votingSessions,
-    votingSessionAdress,
-    onClickVotingSession = () => null,
-    onVotingSessionCreated = async () => null
-}: {
-    votingSessions: Array<VotingSession>;
-    votingSessionAdress: string;
-    onClickVotingSession?: (votingSession: VotingSession) => any;
-    onVotingSessionCreated?: () => Promise<any>;
-}) {
+export default function Sidebar() {
 
     return (
         <Drawer
@@ -30,13 +16,13 @@ export default function Sidebar({
         >
                 <List>
                     <ListItem>
-                        <Title>Voting contracts</Title>
+                        <Title>Linos Music</Title>
                     </ListItem>
-                    {votingSessions.map((votingSession) => (
-                    <ListItem key={votingSession.contractAdress} disablePadding>
-                        <ListItemButton selected={votingSessionAdress === votingSession.contractAdress} onClick={() => onClickVotingSession(votingSession)}>
+
+                    <ListItem disablePadding>
+                        <ListItemButton selected={false} onClick={console.log}>
                             <ListItemText
-                                primary={votingSession.description}
+                                primary={"test btn"}
                                 primaryTypographyProps={{
                                     sx: {
                                         height: '50px',
@@ -49,12 +35,8 @@ export default function Sidebar({
                             />
                         </ListItemButton>
                     </ListItem>
-                    ))}
+
                 </List>
-                <Divider />
-                <div className={styles.bottomBtnContainer}>
-                    <CreateVotingSessionButton onVotingSessionCreated={onVotingSessionCreated} />
-                </div>
         </Drawer>
     )
 }

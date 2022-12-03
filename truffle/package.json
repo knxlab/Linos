@@ -1,5 +1,5 @@
 {
-  "name": "truffle",
+  "name": "linos-truffle",
   "version": "1.0.0",
   "description": "Truffle project with SimpleStorage contract",
   "main": "truffle-config.js",
