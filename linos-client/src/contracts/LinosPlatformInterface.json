@@ -1,0 +1,568 @@
+{
+  "contractName": "LinosPlatformInterface",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "artistAddress",
+          "type": "address"
+        }
+      ],
+      "name": "getArtist",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "string",
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "internalType": "address",
+              "name": "fanTokenAddress",
+              "type": "address"
+            },
+            {
+              "internalType": "bool",
+              "name": "isRegistered",
+              "type": "bool"
+            },
+            {
+              "internalType": "bool",
+              "name": "isValid",
+              "type": "bool"
+            }
+          ],
+          "internalType": "struct LinosPlatformInterface.Artist",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "artistAddress",
+          "type": "address"
+        }
+      ],
+      "name": "isArtistValid",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.17+commit.8df45f5f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"artistAddress\",\"type\":\"address\"}],\"name\":\"getArtist\",\"outputs\":[{\"components\":[{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"fanTokenAddress\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"isRegistered\",\"type\":\"bool\"},{\"internalType\":\"bool\",\"name\":\"isValid\",\"type\":\"bool\"}],\"internalType\":\"struct LinosPlatformInterface.Artist\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"artistAddress\",\"type\":\"address\"}],\"name\":\"isArtistValid\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/LinosPlatformInterface.sol\":\"LinosPlatformInterface\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/LinosPlatformInterface.sol\":{\"keccak256\":\"0xa341875a443f0ecc6f178b350c5c2ad49347c26fbeb42c9771c5ca2cf1a6f232\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://9c15a73c7ece820f55ca1ee07c5605c6c972218aeef7596d284c542442b3275b\",\"dweb:/ipfs/QmS1Ee1r71jvj91Q54QWpafQaxDdoKjKaYoZ99VdoGChS8\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.17;\n\n\ninterface LinosPlatformInterface {\n  struct Track {\n    // address contractAddress;\n    string name;\n    string coverUri;\n  }\n\n  struct Artist {\n    string name;\n    address fanTokenAddress;\n    bool isRegistered;\n    bool isValid;\n  }\n\n  struct User {\n    string name;\n    bool isRegistered;\n  }\n\n  function getArtist(address artistAddress) external view returns(Artist memory);\n  function isArtistValid(address artistAddress) external view returns(bool);\n}",
+  "sourcePath": "/Volumes/code/Alyra/Linos/truffle/contracts/LinosPlatformInterface.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/LinosPlatformInterface.sol",
+    "exportedSymbols": {
+      "LinosPlatformInterface": [
+        864
+      ]
+    },
+    "id": 865,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 829,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".17"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "32:24:4"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "LinosPlatformInterface",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "id": 864,
+        "linearizedBaseContracts": [
+          864
+        ],
+        "name": "LinosPlatformInterface",
+        "nameLocation": "69:22:4",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "LinosPlatformInterface.Track",
+            "id": 834,
+            "members": [
+              {
+                "constant": false,
+                "id": 831,
+                "mutability": "mutable",
+                "name": "name",
+                "nameLocation": "154:4:4",
+                "nodeType": "VariableDeclaration",
+                "scope": 834,
+                "src": "147:11:4",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 830,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "147:6:4",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 833,
+                "mutability": "mutable",
+                "name": "coverUri",
+                "nameLocation": "171:8:4",
+                "nodeType": "VariableDeclaration",
+                "scope": 834,
+                "src": "164:15:4",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 832,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "164:6:4",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "Track",
+            "nameLocation": "103:5:4",
+            "nodeType": "StructDefinition",
+            "scope": 864,
+            "src": "96:88:4",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "LinosPlatformInterface.Artist",
+            "id": 843,
+            "members": [
+              {
+                "constant": false,
+                "id": 836,
+                "mutability": "mutable",
+                "name": "name",
+                "nameLocation": "215:4:4",
+                "nodeType": "VariableDeclaration",
+                "scope": 843,
+                "src": "208:11:4",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 835,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "208:6:4",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 838,
+                "mutability": "mutable",
+                "name": "fanTokenAddress",
+                "nameLocation": "233:15:4",
+                "nodeType": "VariableDeclaration",
+                "scope": 843,
+                "src": "225:23:4",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 837,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "225:7:4",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 840,
+                "mutability": "mutable",
+                "name": "isRegistered",
+                "nameLocation": "259:12:4",
+                "nodeType": "VariableDeclaration",
+                "scope": 843,
+                "src": "254:17:4",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                },
+                "typeName": {
+                  "id": 839,
+                  "name": "bool",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "254:4:4",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 842,
+                "mutability": "mutable",
+                "name": "isValid",
+                "nameLocation": "282:7:4",
+                "nodeType": "VariableDeclaration",
+                "scope": 843,
+                "src": "277:12:4",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                },
+                "typeName": {
+                  "id": 841,
+                  "name": "bool",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "277:4:4",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "Artist",
+            "nameLocation": "195:6:4",
+            "nodeType": "StructDefinition",
+            "scope": 864,
+            "src": "188:106:4",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "LinosPlatformInterface.User",
+            "id": 848,
+            "members": [
+              {
+                "constant": false,
+                "id": 845,
+                "mutability": "mutable",
+                "name": "name",
+                "nameLocation": "323:4:4",
+                "nodeType": "VariableDeclaration",
+                "scope": 848,
+                "src": "316:11:4",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 844,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "316:6:4",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 847,
+                "mutability": "mutable",
+                "name": "isRegistered",
+                "nameLocation": "338:12:4",
+                "nodeType": "VariableDeclaration",
+                "scope": 848,
+                "src": "333:17:4",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                },
+                "typeName": {
+                  "id": 846,
+                  "name": "bool",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "333:4:4",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "User",
+            "nameLocation": "305:4:4",
+            "nodeType": "StructDefinition",
+            "scope": 864,
+            "src": "298:57:4",
+            "visibility": "public"
+          },
+          {
+            "functionSelector": "b949c804",
+            "id": 856,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getArtist",
+            "nameLocation": "368:9:4",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 851,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 850,
+                  "mutability": "mutable",
+                  "name": "artistAddress",
+                  "nameLocation": "386:13:4",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 856,
+                  "src": "378:21:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 849,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "378:7:4",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "377:23:4"
+            },
+            "returnParameters": {
+              "id": 855,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 854,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 856,
+                  "src": "423:13:4",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_Artist_$843_memory_ptr",
+                    "typeString": "struct LinosPlatformInterface.Artist"
+                  },
+                  "typeName": {
+                    "id": 853,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 852,
+                      "name": "Artist",
+                      "nameLocations": [
+                        "423:6:4"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 843,
+                      "src": "423:6:4"
+                    },
+                    "referencedDeclaration": 843,
+                    "src": "423:6:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Artist_$843_storage_ptr",
+                      "typeString": "struct LinosPlatformInterface.Artist"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "422:15:4"
+            },
+            "scope": 864,
+            "src": "359:79:4",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "ba7eea15",
+            "id": 863,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "isArtistValid",
+            "nameLocation": "450:13:4",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 859,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 858,
+                  "mutability": "mutable",
+                  "name": "artistAddress",
+                  "nameLocation": "472:13:4",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 863,
+                  "src": "464:21:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 857,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "464:7:4",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "463:23:4"
+            },
+            "returnParameters": {
+              "id": 862,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 861,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 863,
+                  "src": "509:4:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 860,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "509:4:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "508:6:4"
+            },
+            "scope": 864,
+            "src": "441:74:4",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 865,
+        "src": "59:458:4",
+        "usedErrors": []
+      }
+    ],
+    "src": "32:485:4"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.17+commit.8df45f5f.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.10",
+  "updatedAt": "2022-12-10T23:04:27.850Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

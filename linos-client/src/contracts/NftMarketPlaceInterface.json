@@ -1,0 +1,146 @@
+{
+  "contractName": "NftMarketPlaceInterface",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "nftCollectionAddress",
+          "type": "address"
+        }
+      ],
+      "name": "whiteListNftCollection",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.17+commit.8df45f5f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"nftCollectionAddress\",\"type\":\"address\"}],\"name\":\"whiteListNftCollection\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/NftMarketPlaceInterface.sol\":\"NftMarketPlaceInterface\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/NftMarketPlaceInterface.sol\":{\"keccak256\":\"0xeb2f83c1c139bab38c438b08ab4204a6b5f7521a7c5ecf8e9116b1d99a77dd41\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://d831c5d21f3d3f2863df1c157f3f67c8f0f3c3028f39b2220ce58edd5f0a8049\",\"dweb:/ipfs/QmT5yKWpw8Jiem1TRGwjej1d5Z6PaZ7iMBP4TCcx8mqYCj\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.13;\n\ninterface NftMarketPlaceInterface {\n  function whiteListNftCollection(address nftCollectionAddress) external;\n}\n",
+  "sourcePath": "/Volumes/code/Alyra/Linos/truffle/contracts/NftMarketPlaceInterface.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/NftMarketPlaceInterface.sol",
+    "exportedSymbols": {
+      "NftMarketPlaceInterface": [
+        1295
+      ]
+    },
+    "id": 1296,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1289,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".13"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "32:24:6"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "NftMarketPlaceInterface",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "id": 1295,
+        "linearizedBaseContracts": [
+          1295
+        ],
+        "name": "NftMarketPlaceInterface",
+        "nameLocation": "68:23:6",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "functionSelector": "4d713868",
+            "id": 1294,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "whiteListNftCollection",
+            "nameLocation": "105:22:6",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1292,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1291,
+                  "mutability": "mutable",
+                  "name": "nftCollectionAddress",
+                  "nameLocation": "136:20:6",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1294,
+                  "src": "128:28:6",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1290,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "128:7:6",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "127:30:6"
+            },
+            "returnParameters": {
+              "id": 1293,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "166:0:6"
+            },
+            "scope": 1295,
+            "src": "96:71:6",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 1296,
+        "src": "58:111:6",
+        "usedErrors": []
+      }
+    ],
+    "src": "32:138:6"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.17+commit.8df45f5f.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.10",
+  "updatedAt": "2022-12-10T23:04:27.854Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

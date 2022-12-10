@@ -18,7 +18,6 @@ contract('ArtistERC1155Token', accounts => {
   async function getNewContract(options) {
     return await ArtistERC1155Token.new(
       "ipfs://QmT2uYvfEgNFDMGSwiVvQ6EUuKgEPj88NKnFtmwi5eRquv/{id}.json",
-      "0x9FC96dE022142fCa0D36a33bdfAa2D9580c318E9", // linosPlatformAddress
       "Test ERC1155",
       ["TOKEN1", "TOKEN2"],
       [1, 2],
@@ -37,7 +36,7 @@ contract('ArtistERC1155Token', accounts => {
       });
     });
 
-    it("...Chould return the url properly", async () => {
+    it("...Should return the url properly", async () => {
       const uri = await instance.uri(1);
       expect(uri).to.be.equal("ipfs://QmT2uYvfEgNFDMGSwiVvQ6EUuKgEPj88NKnFtmwi5eRquv/{id}.json");
     });

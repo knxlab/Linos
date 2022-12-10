@@ -1,34 +1,30 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.17;
 
-// import "@openzeppelin/contracts/access/Ownable.sol";
 import "../node_modules/@openzeppelin/contracts/access/Ownable.sol";
 
-import "./NFTArtistMusicCollectionFactory.sol";
+import "./LinosPlatformInterface.sol";
+import "./ArtistERC1155Factory.sol";
 import "./NftMarketPlace.sol";
+import "./FanToken.sol";
 
-contract LinosPlatform is Ownable {
+contract LinosPlatform is LinosPlatformInterface, Ownable {
 
-    struct Track {
-        // address contractAddress;
-        string name;
-        string coverUri;
-    }
 
-    struct Artist {
-        string name;
-        bool isRegistered;
-        bool isValid;
-    }
-
+    address public listenTokenAddress;
     address public nftFactoryAddress;
     address public nftMarketPlaceAddress;
 
+    mapping(address => User) public users;
     mapping(address => Artist) public artists;
     mapping(address => Track[]) public artistTracks;
 
+    modifier notAUser(address _address) {
+        require(!users[_address].isRegistered, "User Already registered");
+        _;
+    }
     modifier notAnArtist(address _address) {
-        require(!artists[_address].isRegistered, "Already registered");
+        require(!artists[_address].isRegistered, "Artist Already registered");
         _;
     }
     modifier onlyValidArtist(address _address) {
@@ -37,16 +33,43 @@ contract LinosPlatform is Ownable {
     }
 
     constructor() {
-        nftMarketPlaceAddress = address(new NftMarketPlace(address(this)));
-        nftFactoryAddress = address(new NFTArtistMusicCollectionFactory(address(this), nftMarketPlaceAddress));
+        NftMarketPlace nftMarketPlace = new NftMarketPlace();
+        nftMarketPlace.setFees(5);
+        nftMarketPlace.setLinosPlatformAddress(address(this));
+        nftMarketPlaceAddress = address(nftMarketPlace);
+
+        nftFactoryAddress = address(new ArtistERC1155Factory(
+            address(this),
+            address(nftMarketPlace)
+        ));
+
+        nftMarketPlace.setNftFactoryAddress(nftFactoryAddress);
     }
 
-    function isArtistValid(address artistAddress) public view returns(bool) {
+    function getArtist(address artistAddress) external view returns(Artist memory) {
+        return artists[artistAddress];
+    }
+
+    function isArtistValid(address artistAddress) external view returns(bool) {
         return artists[artistAddress].isValid;
     }
 
-    function registerValidArtist(address _artistAddress, string calldata _artistName) public onlyOwner notAnArtist(_artistAddress) {
-        artists[_artistAddress] = Artist(_artistName, true, true);
+    function registerAsArtist(
+        string calldata _artistName,
+        string calldata _symbol
+    ) public notAnArtist(msg.sender) notAUser(msg.sender) {
+        FanToken artistFanToken = new FanToken(
+            _artistName,
+            string(abi.encodePacked('L-', _symbol)),
+            address(this)
+        );
+        artists[msg.sender] = Artist(_artistName, address(artistFanToken), true, true);
+    }
+
+    function registerAsUser(
+        string calldata _userName
+    ) public notAnArtist(msg.sender) notAUser(msg.sender) {
+        users[msg.sender] = User(_userName, true);
     }
 
     function createTrack(string calldata _name, string calldata _coverUri) external onlyValidArtist(msg.sender) {

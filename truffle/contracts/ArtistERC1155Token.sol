@@ -2,11 +2,6 @@
 
 pragma solidity ^0.8.17;
 
-// import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
-// import "@openzeppelin/contracts/access/Ownable.sol";
-// import "@openzeppelin/contracts/utils/Strings.sol";
-// import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
-
 import "../node_modules/@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 import "../node_modules/@openzeppelin/contracts/token/common/ERC2981.sol";
 import "../node_modules/@openzeppelin/contracts/access/Ownable.sol";
@@ -22,8 +17,8 @@ contract ArtistERC1155Token is ERC1155, ERC2981, Ownable, ReentrancyGuard {
 
     // STATE --------------------------------------------------------------------------------------------------
 
-    // The contract address of the Linos Platform
-    address _linosPlatformAddress;
+    // The original owner address
+    address _originalOwner;
 
     enum DistributionType { SELL, DROP }
     struct Options {
@@ -73,16 +68,13 @@ contract ArtistERC1155Token is ERC1155, ERC2981, Ownable, ReentrancyGuard {
     */
     constructor(
         string memory _uri,
-        address linosPlatformAddress_,
         string memory _collectionName,
         string[] memory tokenNames_,
         uint[] memory maxSupply_,
         Options memory options_
     ) ERC1155(_uri) {
-        _linosPlatformAddress = linosPlatformAddress_;
-        if (tokenNames_.length != maxSupply_.length) {
-            revert("Names and MaxSupply should have the same size !");
-        }
+        _originalOwner = msg.sender;
+        require(tokenNames_.length == maxSupply_.length, "size error");
 
         _options = options_;
         _tokenNames = tokenNames_;
@@ -90,18 +82,10 @@ contract ArtistERC1155Token is ERC1155, ERC2981, Ownable, ReentrancyGuard {
 
         collectionName = _collectionName;
 
-        // Transfer OwnerShip to the initiator of the transaction (the artist who use Linos)
-        transferOwnership(tx.origin);
+        if (_options.distributionType == DistributionType.SELL) {
+            mintAllToNewOwner(tx.origin);
+        }
     }
-
-    // Private helpers --------------------------------------------------------------------------------------------------
-
-    function _exists(uint _id) private view returns(bool) {
-        return _id < _tokenNames.length;
-    }
-
-    // Private helpers --------------------------------------------------------------------------------------------------
-
 
     // Public accessor --------------------------------------------------------------------------------------------------
     function getName(uint _id) public view returns(string memory) {
@@ -110,22 +94,10 @@ contract ArtistERC1155Token is ERC1155, ERC2981, Ownable, ReentrancyGuard {
 
     // Public accessor --------------------------------------------------------------------------------------------------
 
-    /*
-     * creates a mapping of strings to ids (i.e ["one","two"], [1,2] - "one" maps to 1, vice versa.)
-     * Use id + 1 because tokenIds should begin with 1, not 0!
-     */
-    // function createMapping(
-    //     string[] memory _names,
-    //     uint[] memory _maxSupply
-    // ) private {
-    //     for (uint id = 0; id < _names.length; id++) {
-    //         nameToId[_names[id]] = id + 1;
-    //         idToName[id + 1] = _names[id];
-    //         _idToMaxSupply[id + 1] = _maxSupply[id];
-    //     }
-    // }
 
-
+    function setFanTokenAddress(address _fanTokenAddress) public onlyOwner {
+        fanTokenAddress = _fanTokenAddress;
+    }
 
 /***
  *    ███╗   ███╗██╗███╗   ██╗████████╗
@@ -136,6 +108,16 @@ contract ArtistERC1155Token is ERC1155, ERC2981, Ownable, ReentrancyGuard {
  *    ╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝   ╚═╝
  */
 
+    function mintAllToNewOwner(address newOwner) private {
+        // Less cost to create the array of ids and use mintBatch
+        uint[] memory ids = new uint[](_maxSupply.length);
+        for (uint id = 0; id < _maxSupply.length; id++) {
+            ids[id] = id;
+        }
+
+        _mintBatch(newOwner, ids, _maxSupply, "");
+    }
+
     /*
      * mint(address account, uint _id)
      *
@@ -145,7 +127,8 @@ contract ArtistERC1155Token is ERC1155, ERC2981, Ownable, ReentrancyGuard {
     */
     function PublicMint(uint _id) public nonReentrant() returns (uint)
     {
-        require(_exists(_id), "Token does not exists");
+        require(_options.distributionType == DistributionType.DROP, "Cannot mint this type of token");
+        require(_id < _tokenNames.length, "Token does not exists");
         require(
             _idToTotalSupply[_id] + 1 <= _maxSupply[_id],
             "Max supply reached for this token type"

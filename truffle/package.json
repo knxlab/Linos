@@ -10,7 +10,8 @@
     "solc": "^0.8.17"
   },
   "devDependencies": {
-    "@openzeppelin/test-helpers": "^0.5.16"
+    "@openzeppelin/test-helpers": "^0.5.16",
+    "truffle-contract-size": "^2.0.1"
   },
   "scripts": {
     "test": "truffle test",
