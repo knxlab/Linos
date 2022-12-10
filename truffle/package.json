@@ -9,7 +9,9 @@
     "dotenv": "^16.0.3",
     "solc": "^0.8.17"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@openzeppelin/test-helpers": "^0.5.16"
+  },
   "scripts": {
     "test": "truffle test",
     "solc": "solc --help",

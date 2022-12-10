@@ -3,11 +3,12 @@ pragma solidity ^0.8.13;
 
 import "../node_modules/@openzeppelin/contracts/token/ERC721/IERC721.sol";
 import "../node_modules/@openzeppelin/contracts/security/ReentrancyGuard.sol";
+import "../node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
-// Check out https://github.com/Fantom-foundation/Artion-Contracts/blob/5c90d2bc0401af6fb5abf35b860b762b31dfee02/contracts/FantomMarketplace.sol
-// For a full decentralized nft marketplace
+// import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
+// import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
-error PriceNotMet(address nftAddress, uint256 tokenId, uint256 price);
+error WrongBuyingPrice(address nftAddress, uint256 tokenId, uint256 price);
 error ItemNotForSale(address nftAddress, uint256 tokenId);
 error NotListed(address nftAddress, uint256 tokenId);
 error AlreadyListed(address nftAddress, uint256 tokenId);
@@ -19,7 +20,12 @@ error PriceMustBeAboveZero();
 // Error thrown for isNotOwner modifier
 // error IsNotOwner()
 
+/*
+ * @title Linos NFT Marketplace
+ * @dev is ReentrancyGuard from openzeppelin in order to add security to some functions
+ */
 contract NftMarketplace is ReentrancyGuard {
+
     struct Listing {
         uint256 price;
         address seller;
@@ -32,13 +38,13 @@ contract NftMarketplace is ReentrancyGuard {
         uint256 price
     );
 
-    event ItemCanceled(
+    event ItemRemovedFromListing(
         address indexed seller,
         address indexed nftAddress,
         uint256 indexed tokenId
     );
 
-    event ItemBought(
+    event Bought(
         address indexed buyer,
         address indexed nftAddress,
         uint256 indexed tokenId,
@@ -95,24 +101,21 @@ contract NftMarketplace is ReentrancyGuard {
         }
         _;
     } */
+// Ganache_Linos_Account
+
 
     /////////////////////
     // Main Functions //
     /////////////////////
     /*
      * @notice Method for listing NFT
+     * @dev Must be a NFT created by the LinosNFTFactory
      * @param nftAddress Address of NFT contract
      * @param tokenId Token ID of NFT
      * @param price sale price for each item
      */
-    function listItem(
-        address nftAddress,
-        uint256 tokenId,
-        uint256 price
-    )
-        external
-        notListed(nftAddress, tokenId)
-        isOwner(nftAddress, tokenId, msg.sender)
+    function listItem(address nftAddress, uint256 tokenId, uint256 price)
+        external notListed(nftAddress, tokenId) isOwner(nftAddress, tokenId, msg.sender)
     {
         if (price <= 0) {
             revert PriceMustBeAboveZero();
@@ -126,17 +129,13 @@ contract NftMarketplace is ReentrancyGuard {
     }
 
     /*
-     * @notice Method for cancelling listing
-     * @param nftAddress Address of NFT contract
-     * @param tokenId Token ID of NFT
+     * @notice Use this to unlist a NFT from the marketplace
+     * @param nftAddress Address of Artist NFT contract
+     * @param tokenId Token ID of Artist NFT
      */
-    function cancelListing(address nftAddress, uint256 tokenId)
-        external
-        isOwner(nftAddress, tokenId, msg.sender)
-        isListed(nftAddress, tokenId)
-    {
+    function unListItem(address nftAddress, uint256 tokenId) external isOwner(nftAddress, tokenId, msg.sender) isListed(nftAddress, tokenId) {
         delete (s_listings[nftAddress][tokenId]);
-        emit ItemCanceled(msg.sender, nftAddress, tokenId);
+        emit ItemRemovedFromListing(msg.sender, nftAddress, tokenId);
     }
 
     /*
@@ -147,27 +146,18 @@ contract NftMarketplace is ReentrancyGuard {
      * @param nftAddress Address of NFT contract
      * @param tokenId Token ID of NFT
      */
-    function buyItem(address nftAddress, uint256 tokenId)
-        external
-        payable
-        isListed(nftAddress, tokenId)
-        // isNotOwner(nftAddress, tokenId, msg.sender)
-        nonReentrant
-    {
-        // Challenge - How would you refactor this contract to take:
-        // 1. Abitrary tokens as payment? (HINT - Chainlink Price Feeds!)
-        // 2. Be able to set prices in other currencies?
-        // 3. Tweet me @PatrickAlphaC if you come up with a solution!
+    function buyItem(address nftAddress, uint256 tokenId) external payable isListed(nftAddress, tokenId) nonReentrant {
+
         Listing memory listedItem = s_listings[nftAddress][tokenId];
         if (msg.value < listedItem.price) {
-            revert PriceNotMet(nftAddress, tokenId, listedItem.price);
+            revert WrongBuyingPrice(nftAddress, tokenId, listedItem.price);
         }
         s_proceeds[listedItem.seller] += msg.value;
         // Could just send the money...
         // https://fravoll.github.io/solidity-patterns/pull_over_push.html
         delete (s_listings[nftAddress][tokenId]);
         IERC721(nftAddress).safeTransferFrom(listedItem.seller, msg.sender, tokenId);
-        emit ItemBought(msg.sender, nftAddress, tokenId, listedItem.price);
+        emit Bought(msg.sender, nftAddress, tokenId, listedItem.price);
     }
 
     /*
