@@ -1,11 +1,7 @@
 import { useEffect, useState } from "react";
+import { ARTIST } from "./useArtist";
 import useCurrentAccount from "./useCurrentAccount";
 
-export type ARTIST = {
-  name: string;
-  isRegistered: boolean;
-  isValid: boolean;
-}
 
 export type USER = {
   name: string;

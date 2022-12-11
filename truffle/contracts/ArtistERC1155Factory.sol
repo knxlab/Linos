@@ -12,7 +12,7 @@ import "./NftMarketPlaceInterface.sol";
   */
 contract ArtistERC1155Factory {
 
-    event NFTCollectionCreated(string _artistName, address _collectionAddress, uint _timestamp);
+    event NFTCollectionCreated(string _collectionName, address _collectionAddress, uint _timestamp);
 
     address _linosPlatformAddress;
     address _nftMarketPlaceAddress;

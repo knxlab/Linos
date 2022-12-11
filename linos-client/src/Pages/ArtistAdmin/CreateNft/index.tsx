@@ -17,7 +17,8 @@ import { NFTConfig, NftCreateStep, NFTTypes } from "./types";
 export default function CreateNft() {
 
   const [nftConfig, setNftConfig] = useState<NFTConfig>({
-    type: NFTTypes.DROP,
+    type: NFTTypes.SELL,
+    collectionName: "",
     count: 1,
     nfts: []
   });

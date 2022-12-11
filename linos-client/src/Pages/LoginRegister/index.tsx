@@ -43,7 +43,7 @@ export default function LoginRegister() {
       await method.call({ from: account });
       const register = await method.send({ from: account });
       await refetchUser();
-    } catch (e) {
+    } catch (e: any) {
       alert(e.message);
     }
   }
@@ -52,15 +52,15 @@ export default function LoginRegister() {
     <Box id="App" sx={{ display: 'flex' }}>
 
         <Box component="main"
-            sx={{
-                display: 'flex',
-                flexGrow: 1,
-                height: '100vh',
-                overflow: 'auto',
-                position: 'relative',
-                flexDirection: 'column',
-                justifyContent: "center"
-            }}
+          sx={{
+              display: 'flex',
+              flexGrow: 1,
+              height: '100vh',
+              overflow: 'auto',
+              position: 'relative',
+              flexDirection: 'column',
+              justifyContent: "center"
+          }}
         >
 
           <AppBar title="Login / Register" />

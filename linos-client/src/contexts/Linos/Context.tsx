@@ -11,10 +11,12 @@ export const LinosContext = React.createContext<{
     currentUser: CURRENT_USER_DATA;
     linosContract: any;
     linosNftFactoryContract: any;
+    linosNftMarketPlaceContract: any;
 }>({
     currentUser: DefaultCurrentUserValue,
     linosContract: null,
     linosNftFactoryContract: null,
+    linosNftMarketPlaceContract: null,
 });
 
 export const useLinosContext = () => useContext(LinosContext);
@@ -32,8 +34,6 @@ export function LinosContextProvider({
   const currentUser = useCurrentUser({
     linosContract: contracts.LinosPlatform
   });
-
-  console.log("currentUser", currentUser);
 
   useEffect(() => {
 
@@ -72,7 +72,8 @@ export function LinosContextProvider({
       value={{
         currentUser,
         linosContract: contracts.LinosPlatform,
-        linosNftFactoryContract
+        linosNftFactoryContract,
+        linosNftMarketPlaceContract
       }}
     >
       {children}

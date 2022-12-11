@@ -27,7 +27,7 @@ export default function ChooseApp() {
                 <Button variant="contained" onClick={() => navigate('/artist-admin')}>Go to the Artist Admin</Button>
               </div>
               <div>
-                <Button variant="contained" onClick={() => navigate('/marketplace')}>Go to the marketplace</Button>
+                <Button variant="contained" onClick={() => navigate('/marketplace/all')}>Go to the marketplace</Button>
               </div>
             </div>
           </Container>

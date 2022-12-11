@@ -65,7 +65,7 @@ export default function Select({
       </ButtonGroup>
       <Popper
         sx={{
-          zIndex: 1,
+          zIndex: 10,
         }}
         open={open}
         anchorEl={anchorRef.current}

@@ -24,7 +24,7 @@ export default function ChooseAppUser() {
           <Container className={Styles.container}>
             <div className={Styles.container}>
               <div>
-                <Button variant="contained" onClick={() => navigate('/marketplace')}>Go to the marketplace</Button>
+                <Button variant="contained" onClick={() => navigate('/marketplace/all')}>Go to the marketplace</Button>
               </div>
               <div>
                 <Button variant="contained" onClick={() => navigate('/streaming')}>Go to the Streaming platform</Button>

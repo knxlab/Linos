@@ -1,7 +1,7 @@
 import { Box, Toolbar } from "@mui/material";
 import { Outlet } from "react-router-dom";
 import AppBar from "../../components/AppBar";
-import Sidebar from "../../components/Sidebar";
+import Sidebar from "./Sidebar";
 
 
 export default function MarketPlace() {

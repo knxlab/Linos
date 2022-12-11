@@ -20,18 +20,8 @@ export default function Sidebar() {
                     <ListItem>
                         <Title>Linos Marketplace</Title>
                     </ListItem>
-                    <NavLink title={"Create NFT Collection"} to={"/artist-admin/create-nft"} />
-                    {/* <NavLink title={"NFT Collections"} to={"/artist-admin/collections"} />
-                    <NavLink title={"Maketplace listings"} to={"/artist-admin/listings"} /> */}
-
-                    <Divider />
-
-
-                    <ListItem>
-                        <Title>Linos Music</Title>
-                    </ListItem>
-                    <NavLink title={"Create Track"} to={"/artist-admin/create-track"} />
-                    {/* <NavLink title={"My music"} to={"/artist-admin/tracks"} /> */}
+                    <NavLink title={"All Nfts"} to={"/marketplace/all"} />
+                    <NavLink title={"Your listings"} to={"/marketplace/your-listings"} />
 
                 </List>
         </Drawer>

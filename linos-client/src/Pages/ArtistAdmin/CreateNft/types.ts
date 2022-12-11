@@ -5,10 +5,11 @@ export enum NftCreateStep {
 }
 
 export enum NFTTypes {
-  DROP,
-  SELL
+  SELL,
+  DROP
 }
 export type NFTConfig = {
+  collectionName: string;
   type: NFTTypes;
   count: number;
   nfts: Array<{

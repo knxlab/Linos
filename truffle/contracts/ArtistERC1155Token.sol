@@ -28,14 +28,12 @@ contract ArtistERC1155Token is ERC1155, ERC2981, Ownable, ReentrancyGuard {
         uint maxMintPerWallerPerToken; // set to zero to disable
     }
 
-    Options private _options;
+    Options public _options;
     string public collectionName; // the token mame
     address public fanTokenAddress; // The contract address of the artist Fan Token
 
-    mapping(string => uint) public nameToId; // name to id mapping
-    mapping(uint => string) public idToName; // id to name mapping
-    string[] private _tokenNames;
-    uint[] private _maxSupply;
+    string[] public _tokenNames;
+    uint[] public _maxSupply;
 
 
     // Mapping to hold the total supply of each token type in the contract
@@ -90,6 +88,11 @@ contract ArtistERC1155Token is ERC1155, ERC2981, Ownable, ReentrancyGuard {
     // Public accessor --------------------------------------------------------------------------------------------------
     function getName(uint _id) public view returns(string memory) {
         return _tokenNames[_id];
+    }
+
+
+    function getCountTokens() public view returns(uint) {
+        return _tokenNames.length;
     }
 
     // Public accessor --------------------------------------------------------------------------------------------------

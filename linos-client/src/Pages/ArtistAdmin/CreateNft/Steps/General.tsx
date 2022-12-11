@@ -1,4 +1,4 @@
-import { Alert, AlertTitle, Button } from '@mui/material';
+import { Alert, AlertTitle, Button, TextField } from '@mui/material';
 import Select from '../../../../components/Select';
 import Slider from '../../../../components/Slider';
 import ContainerFullHeightFlex from '../../../../Layout/ContainerFullHeightFlex';
@@ -17,7 +17,16 @@ export default function CreateNftStepGeneral({
   return (
     <ContainerFullHeightFlex className={styles.container}>
       <FormLineWithTitle title={"Type"} className={styles.formLine}>
-        <Select options={['DROP', 'SELL']} selectedIndex={nftConfig.type} onChangeIndex={index => onChangeConfig({...nftConfig, type: index})} />
+        <Select options={['SELL', 'DROP']} selectedIndex={nftConfig.type} onChangeIndex={index => onChangeConfig({...nftConfig, type: index})} />
+      </FormLineWithTitle>
+
+      <FormLineWithTitle title={"Type"} className={styles.formLine}>
+        <TextField label="Collection Name" variant="outlined" value={nftConfig.collectionName} onChange={(e) => {
+          onChangeConfig({
+            ...nftConfig,
+            collectionName: e.target.value
+          })
+        }} />
       </FormLineWithTitle>
 
       <Alert severity="info" variant='outlined' className={styles.formLine}>

@@ -9,7 +9,10 @@ import CreateNft from "./Pages/ArtistAdmin/CreateNft";
 import { useLinosContext } from "./contexts/Linos/Context";
 import ChooseAppUser from "./Pages/ChooseAppUser";
 import LoginRegister from "./Pages/LoginRegister";
-
+import AllNfts from "./Pages/MarketPlace/AllNfts";
+import YourListings from "./Pages/MarketPlace/YourListings";
+import MarketPlaceNftPage from "./Pages/MarketPlace/NftPage";
+import MarketPlaceNftTokenPage from "./Pages/MarketPlace/NftTokenPage";
 
 const routerUnlogged = createBrowserRouter([
   {
@@ -20,7 +23,25 @@ const routerUnlogged = createBrowserRouter([
 
 const routesMarketplace = {
   path: "/marketplace",
-  element: <MarketPlace />
+  element: <MarketPlace />,
+  children: [
+    {
+      path: "all",
+      element: <AllNfts />
+    },
+    {
+      path: 'nft/:nftAddress/:tokenId',
+      element: <MarketPlaceNftTokenPage />
+    },
+    {
+      path: 'nft/:nftAddress',
+      element: <MarketPlaceNftPage />,
+    },
+    {
+      path: "your-listings",
+      element: <YourListings />
+    }
+  ]
 };
 
 
