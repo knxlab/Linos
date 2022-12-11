@@ -1,0 +1,14 @@
+
+.container {
+  overflow: auto;
+  padding-top: 20px;
+}
+
+.formLine {
+  margin-bottom: 10px;
+}
+
+.dropZoneContainer {
+  background-color: white;
+  padding: 10px;
+}

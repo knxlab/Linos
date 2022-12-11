@@ -17,7 +17,7 @@ function AccountChip({ address }: { address: string }) {
     )
 }
 
-export default function AppBar({ children }: { children?: React.ReactNode }) {
+export default function AppBar({ children, title }: { children?: React.ReactNode; title: string }) {
     const account = useCurrentAccount();
     return (
         <MaterialAppBar position="absolute" sx={{ width: "100%" }}>
@@ -34,7 +34,7 @@ export default function AppBar({ children }: { children?: React.ReactNode }) {
                     noWrap
 
                 >
-                Voting session
+                {title}
                 </Typography>
 
                 <div className={styles.containerCenter}>

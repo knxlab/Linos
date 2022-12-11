@@ -2,10 +2,10 @@ import React, { useReducer, useCallback, useEffect } from "react";
 import Web3 from "web3";
 import EthContext from "./EthContext";
 import { reducer, actions, initialState } from "./state";
-import VotingFactory from "../../contracts/VotingFactory.json";
+import LinosPlatform from "../../contracts/LinosPlatform.json";
 
 const INIT_ARTIFACTS = {
-  VotingFactory
+  LinosPlatform
 };
 
 function EthProvider({ children, autoInit = false }) {

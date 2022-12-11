@@ -1,3 +1,4 @@
+// @ts-ignore
 import useEth from "../contexts/EthContext/useEth";
 
 export default function useContracts() {

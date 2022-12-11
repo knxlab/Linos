@@ -4,50 +4,28 @@ import "./App.css";
 // eslint-disable-next-line
 // @ts-ignore
 import { useEth } from "./contexts/EthContext";
-import Sidebar from "./components/Sidebar";
 
-import AppBar from "./components/AppBar";
 import { FullWithHeightFlex } from "./Layout/FullWidthHeightFlex";
 import Title from "./Layout/Title";
 import MetaMaskLoginBtn from "./components/MetaMaskLoginBtn";
+import Routes from "./Routes";
+import { LinosContextProvider } from "./contexts/Linos/Context";
 
 export function AppLoadEth() {
   const { state: { ready }} = useEth();
 
-  // if (!ready) {
-  //   return (
-  //     <FullWithHeightFlex>
-  //       <Title>Welcome to Linos</Title>
-  //       <MetaMaskLoginBtn />
-  //     </FullWithHeightFlex>
-  //   );
-  // }
+  if (!ready) {
+    return (
+      <FullWithHeightFlex>
+        <Title>Welcome to Linos</Title>
+        <MetaMaskLoginBtn />
+      </FullWithHeightFlex>
+    );
+  }
 
   return (
-    <App />
+    <LinosContextProvider>
+      <Routes />
+    </LinosContextProvider>
   )
 }
-
-function App() {
-
-  return (
-    <Box id="App" sx={{ display: 'flex' }}>
-
-        <Sidebar />
-
-        <Box component="main"
-            sx={{
-                flexGrow: 1,
-                height: '100vh',
-                overflow: 'auto',
-                position: 'relative',
-            }}
-        >
-          <AppBar />
-          <Toolbar />
-        </Box>
-    </Box>
-  );
-}
-
-export default App;

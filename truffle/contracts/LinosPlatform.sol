@@ -50,6 +50,10 @@ contract LinosPlatform is LinosPlatformInterface, Ownable {
         return artists[artistAddress];
     }
 
+    function getUser(address userAddress) external view returns(User memory) {
+        return users[userAddress];
+    }
+
     function isArtistValid(address artistAddress) external view returns(bool) {
         return artists[artistAddress].isValid;
     }

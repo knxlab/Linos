@@ -22,5 +22,6 @@ interface LinosPlatformInterface {
   }
 
   function getArtist(address artistAddress) external view returns(Artist memory);
+  function getUser(address userAddress) external view returns(User memory);
   function isArtistValid(address artistAddress) external view returns(bool);
 }
