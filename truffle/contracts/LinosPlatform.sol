@@ -79,4 +79,7 @@ contract LinosPlatform is LinosPlatformInterface, Ownable {
     function createTrack(string calldata _name, string calldata _coverUri) external onlyValidArtist(msg.sender) {
         artistTracks[msg.sender].push(Track(_name, _coverUri));
     }
+
+    receive() external payable {}
+    fallback() external payable {}
 }

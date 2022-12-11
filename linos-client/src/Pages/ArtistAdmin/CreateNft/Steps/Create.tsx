@@ -81,10 +81,10 @@ export default function CreateNftUpload({
       await method.call({ from: account });
       const resultCreateNft = await method.send({ from: account });
       console.log("resultCreateNft", resultCreateNft)
-      // if (resultCreateNft.status) {
-      //   navigate("/marketplace/all");
-      //   return;
-      // }
+      if (resultCreateNft.status) {
+        navigate("/marketplace/all");
+        return;
+      }
     } catch (e: any) {
       alert(e.message);
     }

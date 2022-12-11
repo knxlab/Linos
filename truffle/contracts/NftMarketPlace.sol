@@ -2,12 +2,11 @@
 pragma solidity ^0.8.17;
 
 import "../node_modules/@openzeppelin/contracts/token/ERC1155/IERC1155.sol";
-import "../node_modules/@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
 import "./NftMarketPlaceInterface.sol";
 import "./LinosOwnable.sol";
 
-contract NftMarketPlace is NftMarketPlaceInterface, LinosOwnable, ReentrancyGuard {
+contract NftMarketPlace is NftMarketPlaceInterface, LinosOwnable {
 
     struct SellListing {
         address sellerAddress;
@@ -15,13 +14,8 @@ contract NftMarketPlace is NftMarketPlaceInterface, LinosOwnable, ReentrancyGuar
         uint tokenId;
         uint amountOfTokens;
         uint pricePerToken;
+        bool canceled;
     }
-
-    // @notice Used to debug
-    event Log (
-        string data,
-        uint amount
-    );
 
     // @notice This is the emitted event, when a offer for a certain amount of tokens.
     event SellEvent (
@@ -30,6 +24,11 @@ contract NftMarketPlace is NftMarketPlaceInterface, LinosOwnable, ReentrancyGuar
         uint tokenId,
         uint sellId,
         uint pricePerToken
+    );
+
+    // @notice This is the emitted event, when a offer for a certain amount of tokens.
+    event SellCanceledEvent (
+        uint sellId
     );
 
     // @notice This is the emitted event, when a offer for a certain amount of tokens.
@@ -60,13 +59,17 @@ contract NftMarketPlace is NftMarketPlaceInterface, LinosOwnable, ReentrancyGuar
         nftCollectionWhiteList[nftCollectionAddress] = true;
     }
 
-    function getCurrentListingId() public view returns(uint) {
-        return _currentSellId;
-    }
-
     function getListing(uint sellId) public view returns(SellListing memory) {
         require(_allSellListing[sellId].sellerAddress != address(0), "This listing does not exists");
         return _allSellListing[sellId];
+    }
+
+    function cancelListing(uint sellId) external {
+        require(_allSellListing[sellId].sellerAddress == msg.sender, "This listing is not yours");
+        require(!_allSellListing[sellId].canceled, "listing already canceled");
+        _allSellListing[sellId].canceled = true;
+
+        emit SellCanceledEvent(sellId);
     }
 
     function listItems(
@@ -88,7 +91,8 @@ contract NftMarketPlace is NftMarketPlaceInterface, LinosOwnable, ReentrancyGuar
             tokenAddress,
             tokenId,
             amountOfTokens,
-            pricePerToken
+            pricePerToken,
+            false
         );
         _collectionTokenListSells[tokenAddress][tokenId] = _currentSellId;
         _collectionListSells[tokenAddress] = _currentSellId;
@@ -106,7 +110,7 @@ contract NftMarketPlace is NftMarketPlaceInterface, LinosOwnable, ReentrancyGuar
     function buyItem(
         uint sellId,
         uint amountOfTokens
-    ) external payable nonReentrant() returns(bool) {
+    ) external payable returns(bool) {
 
         require(amountOfTokens > 0, "You must buy at least 1 token");
         require(_allSellListing[sellId].sellerAddress != address(0), "This listing does not exists");
@@ -135,7 +139,6 @@ contract NftMarketPlace is NftMarketPlaceInterface, LinosOwnable, ReentrancyGuar
 
         require(successTransferToSeller, "Transfer failed to Seller");
         require(successTransferToOwner, "Transfer failed to Owner");
-
 
         emit BuyEvent(
             msg.sender,

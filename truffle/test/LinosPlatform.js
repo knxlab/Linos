@@ -25,7 +25,7 @@ contract('NftMarketPlace', accounts => {
 
   async function createNftContract(nftFactoryInstance, from) {
     return await nftFactoryInstance.createNFTCollection.call(
-      "ipfs://QmT2uYvfEgNFDMGSwiVvQ6EUuKgEPj88NKnFtmwi5eRquv/{id}.json",
+      "ipfs://bafybeifkrca6zzfn5hggak2jbbjddzwhaj4b3svtwjr4lrzlcisnpb6mpm/linos/{id}",
       "Test ERC1155",
       ["TOKEN1", "TOKEN2"],
       [11, 22],
@@ -107,10 +107,8 @@ contract('NftMarketPlace', accounts => {
   //       { from: seller }
   //     );
 
-  //     const sellId = await instanceMarketplace.getCurrentListingId();
   //     const listing = await instanceMarketplace.getListing(0);
 
-  //     expect(sellId).to.be.bignumber.equal(BN(1));
   //     // web3.utils.toBN(web3.utils.toWei('1', 'ether'))
   //     expect(listing.pricePerToken).to.be.bignumber.equal(web3.utils.toWei("1", "ether"));
   //   });

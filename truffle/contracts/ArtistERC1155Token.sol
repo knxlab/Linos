@@ -6,10 +6,8 @@ import "../node_modules/@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 import "../node_modules/@openzeppelin/contracts/token/common/ERC2981.sol";
 import "../node_modules/@openzeppelin/contracts/access/Ownable.sol";
 import "../node_modules/@openzeppelin/contracts/utils/Strings.sol";
-import "../node_modules/@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
-
-contract ArtistERC1155Token is ERC1155, ERC2981, Ownable, ReentrancyGuard {
+contract ArtistERC1155Token is ERC1155, ERC2981, Ownable {
 
     function supportsInterface(bytes4 interfaceId) public view override(ERC1155, ERC2981) returns (bool) {
         return super.supportsInterface(interfaceId);
@@ -128,7 +126,7 @@ contract ArtistERC1155Token is ERC1155, ERC2981, Ownable, ReentrancyGuard {
      * _id - the ID being minted
      * A user can only mint one token
     */
-    function PublicMint(uint _id) public nonReentrant() returns (uint)
+    function PublicMint(uint _id) public returns (uint)
     {
         require(_options.distributionType == DistributionType.DROP, "Cannot mint this type of token");
         require(_id < _tokenNames.length, "Token does not exists");

@@ -11,12 +11,15 @@
   },
   "devDependencies": {
     "@openzeppelin/test-helpers": "^0.5.16",
+    "delay": "^5.0.0",
     "truffle-contract-size": "^2.0.1"
   },
   "scripts": {
-    "test": "truffle test",
+    "test": "truffle test test/LinosPlatform.js --network development",
+    "test-marketplace": "truffle test test/NftMarketPlace.js --network development",
     "solc": "solc --help",
     "migrate-dev": "truffle migrate --network=development",
+    "seeds-dev": "truffle exec scripts/seeds.js --network development",
     "migrate-goerli": "truffle migrate --network=goerli"
   },
   "author": "",

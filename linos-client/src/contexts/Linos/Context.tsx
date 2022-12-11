@@ -12,11 +12,13 @@ export const LinosContext = React.createContext<{
     linosContract: any;
     linosNftFactoryContract: any;
     linosNftMarketPlaceContract: any;
+    linosNftMarketPlaceAddress: string;
 }>({
     currentUser: DefaultCurrentUserValue,
     linosContract: null,
     linosNftFactoryContract: null,
     linosNftMarketPlaceContract: null,
+    linosNftMarketPlaceAddress: ""
 });
 
 export const useLinosContext = () => useContext(LinosContext);
@@ -31,6 +33,7 @@ export function LinosContextProvider({
   const contracts = useContracts();
   const [linosNftFactoryContract, setLinosNftFactoryContract] = useState<any>();
   const [linosNftMarketPlaceContract, setLinosNftMarketPlaceContract] = useState<any>();
+  const [linosNftMarketPlaceAddress, setLinosNftMarketPlaceAddress] = useState<string>("");
   const currentUser = useCurrentUser({
     linosContract: contracts.LinosPlatform
   });
@@ -54,6 +57,7 @@ export function LinosContextProvider({
       (async () => {
         const marketplaceAddress = await contracts.LinosPlatform.methods.nftMarketPlaceAddress().call();
         const marketplaceContract = new web3.eth.Contract(NftMarketPlaceArtifact.abi, marketplaceAddress);
+        setLinosNftMarketPlaceAddress(marketplaceAddress);
         setLinosNftMarketPlaceContract(marketplaceContract)
         console.log("marketplaceAddress", marketplaceAddress);
       })()
@@ -73,7 +77,8 @@ export function LinosContextProvider({
         currentUser,
         linosContract: contracts.LinosPlatform,
         linosNftFactoryContract,
-        linosNftMarketPlaceContract
+        linosNftMarketPlaceContract,
+        linosNftMarketPlaceAddress
       }}
     >
       {children}

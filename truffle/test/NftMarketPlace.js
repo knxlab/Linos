@@ -32,7 +32,11 @@ contract('NftMarketPlace', accounts => {
     );
   }
   async function getMarketPlaceInstance(fees = 0) {
-    return await NftMarketPlace.new(fees, { from: owner });
+    const instance = await NftMarketPlace.new({ from: owner });
+    if (fees) {
+      await instance.setFees(fees, { from: owner });
+    }
+    return instance;
   }
 
   describe("Basics", () => {
@@ -66,6 +70,8 @@ contract('NftMarketPlace', accounts => {
       instanceNFT = await getNftContract();
 
       await instanceNFT.PublicMint(0, { from: seller });
+      await instanceNFT.PublicMint(0, { from: seller });
+      await instanceNFT.PublicMint(0, { from: seller });
     });
 
     it("...Fees should be 1000", async () => {
@@ -78,15 +84,13 @@ contract('NftMarketPlace', accounts => {
       await instanceMarketplace.listItems(
         instanceNFT.address,
         0,
-        1,
+        3,
         web3.utils.toWei("1", "ether"),
         { from: seller }
       );
 
-      const sellId = await instanceMarketplace.getCurrentListingId();
       const listing = await instanceMarketplace.getListing(0);
 
-      expect(sellId).to.be.bignumber.equal(BN(1));
       // web3.utils.toBN(web3.utils.toWei('1', 'ether'))
       expect(listing.pricePerToken).to.be.bignumber.equal(web3.utils.toWei("1", "ether"));
     });
@@ -96,20 +100,20 @@ contract('NftMarketPlace', accounts => {
       const ethBalanceOfSeller = web3.utils.toBN(await web3.eth.getBalance(seller));
       const ethBalanceOfMarketplace = web3.utils.toBN(await web3.eth.getBalance(owner));
 
-      await instanceMarketplace.buyItem(0, 1, {
-        from: buyer, value: web3.utils.toBN(web3.utils.toWei("1", 'ether'))
+      await instanceMarketplace.buyItem(0, 3, {
+        from: buyer, value: web3.utils.toBN(web3.utils.toWei("3", 'ether'))
       });
       const sellerBalance = await instanceNFT.balanceOf(seller, 0);
       const buyerBalance = await instanceNFT.balanceOf(buyer, 0);
 
       expect(sellerBalance).to.be.bignumber.equal(BN(0));
-      expect(buyerBalance).to.be.bignumber.equal(BN(1));
+      expect(buyerBalance).to.be.bignumber.equal(BN(3));
 
       const ethBalanceOfBuyerAfter = web3.utils.toBN(await web3.eth.getBalance(buyer));
       const ethBalanceOfSellerAfter = web3.utils.toBN(await web3.eth.getBalance(seller));
       const ethBalanceOfMarketplaceAfter = web3.utils.toBN(await web3.eth.getBalance(owner));
 
-      const Fees = web3.utils.toBN(web3.utils.toWei("0.1", 'ether'));
+      const Fees = web3.utils.toBN(web3.utils.toWei("0.3", 'ether'));
 
       expect(ethBalanceOfBuyerAfter).to.be.bignumber.lessThan(ethBalanceOfBuyer);
       expect(ethBalanceOfSellerAfter).to.be.bignumber.greaterThan(ethBalanceOfSeller);

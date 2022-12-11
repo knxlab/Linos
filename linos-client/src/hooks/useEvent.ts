@@ -30,13 +30,23 @@ export function useEvents({ contract, eventName }: { contract: any; eventName: s
 
   const [events, setEvents] = useState<Array<any>>([]);
 
+  useEventSubscriber({
+    onEvent: (event) => {
+      setEvents(events => [
+        event,
+        ...events
+      ])
+    },
+    contract,
+    eventName
+  });
+
   const loadPastEvents = useCallback(async () => {
     if (!contract) {
       return;
     }
     const resultEvents = await contract.getPastEvents(eventName, { fromBlock: 0, toBlock: 'latest' });
 
-    console.log("resultEvents", [...resultEvents]);
     setEvents(resultEvents.reverse());
   }, [eventName, contract])
 

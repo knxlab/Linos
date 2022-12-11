@@ -15,7 +15,7 @@ export default function NftTokenListLine({ collectionAddress, tokenId, onClick }
     <div className={styles.container} onClick={onClick}>
       {!!nftToken.image ? (
         <div className={styles.imgContainer}>
-          <img src={nftToken.image} height="100%" />
+          <img src={nftToken.image} height="100%" width="100px" style={{ width: '100px', objectFit: "contain"}} />
         </div>
       ): (
         <div className={styles.imgPlaceholder} />

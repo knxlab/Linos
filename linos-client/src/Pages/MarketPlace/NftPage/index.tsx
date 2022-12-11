@@ -16,8 +16,12 @@ export default function MarketPlaceNftPage() {
 
   console.log("artist", artist);
 
-  const nftIds = Array.from(Array(nftCollection.countTokens).keys());
+  let nftIds = []
+  for (let index = 0; index < nftCollection.countTokens; index++) {
+    nftIds.push(index);
+  }
 
+  console.log("nftIds", nftIds);
   return (
     <ContainerFullHeightFlex className={styles.container}>
       <AppBar title={nftCollection.collectionName + (!!artist.name ? ` -- by ${artist.name}` : "")} />

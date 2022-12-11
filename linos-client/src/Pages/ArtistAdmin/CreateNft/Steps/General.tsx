@@ -6,6 +6,11 @@ import FormLineWithTitle from '../../../../Layout/Form/FormLineWithTitle';
 import { NFTConfig } from '../types';
 import styles from './styles.module.css';
 
+import { useLinosContext } from '../../../../contexts/Linos/Context';
+import useCurrentAccount from '../../../../hooks/useCurrentAccount';
+import { useNavigate } from 'react-router-dom';
+
+
 export default function CreateNftStepGeneral({
   nftConfig,
   onChangeConfig
@@ -14,8 +19,36 @@ export default function CreateNftStepGeneral({
   onChangeConfig: (nftConfig: NFTConfig) => any;
 }) {
 
+  const navigate = useNavigate();
+  const account = useCurrentAccount();
+  const { linosNftFactoryContract } = useLinosContext();
+
+  const createFake = async () => {
+    const resultNft = await linosNftFactoryContract.methods.createNFTCollection(
+      "ipfs://bafybeifkrca6zzfn5hggak2jbbjddzwhaj4b3svtwjr4lrzlcisnpb6mpm/linos/{id}",
+      "Test NFT Collection DROP",
+      ["Apple", "Etam", "Nike", "AppleStore"],
+      [1, 10, 20, 100],
+      {
+        distributionType: 0,
+        minimumFanTokenRequiredToMint: 0,
+        maxTotalMintPerWallet: 0,
+        maxMintPerWallerPerToken: 0
+      }
+    ).send({ from: account });
+
+    console.log(resultNft);
+    if (resultNft.status) {
+      navigate("/marketplace/all");
+      return;
+    }
+  }
+
   return (
     <ContainerFullHeightFlex className={styles.container}>
+
+      <Button onClick={createFake}>Create 3 FAKE</Button>
+
       <FormLineWithTitle title={"Type"} className={styles.formLine}>
         <Select options={['SELL', 'DROP']} selectedIndex={nftConfig.type} onChangeIndex={index => onChangeConfig({...nftConfig, type: index})} />
       </FormLineWithTitle>
