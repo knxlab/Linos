@@ -59,10 +59,8 @@ contract('NftMarketPlace', accounts => {
     it("...Can register as artist", async () => {
       const { linosInstance } = instances;
       await linosInstance.registerAsArtist("Orelsan", "ORL", { from: artist });
-      const isValid = await linosInstance.isArtistValid(artist);
       const artistObj = await linosInstance.getArtist(artist);
       const notArtist = await linosInstance.getArtist(addressZero);
-      expect(isValid).to.be.true;
       expect(artistObj.isRegistered).to.be.true;
       expect(notArtist.fanTokenAddress).to.be.equal(addressZero);
       expect(artistObj.fanTokenAddress).not.to.be.equal(addressZero);

@@ -102,7 +102,7 @@ export default function LoginRegister() {
               margin="normal"
               required
               fullWidth
-              label={"Symbol for your Token"}
+              label={"Symbol for your Fan Token"}
               InputProps={{
                startAdornment: <InputAdornment position="start">L-</InputAdornment>
               }}

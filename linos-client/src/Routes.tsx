@@ -13,6 +13,12 @@ import AllNfts from "./Pages/MarketPlace/AllNfts";
 import YourListings from "./Pages/MarketPlace/YourListings";
 import MarketPlaceNftPage from "./Pages/MarketPlace/NftPage";
 import MarketPlaceNftTokenPage from "./Pages/MarketPlace/NftTokenPage";
+import ArtistPage from "./Pages/MarketPlace/ArtistPage";
+
+
+const Soon = () => {
+  return (<div>Soon..</div>)
+}
 
 const routerUnlogged = createBrowserRouter([
   {
@@ -21,6 +27,12 @@ const routerUnlogged = createBrowserRouter([
   }
 ]);
 
+
+const routesStreaming = {
+  path: "/streaming",
+  element: <Soon />,
+
+}
 const routesMarketplace = {
   path: "/marketplace",
   element: <MarketPlace />,
@@ -28,6 +40,10 @@ const routesMarketplace = {
     {
       path: "all",
       element: <AllNfts />
+    },
+    {
+      path: "artist/:artistAddress",
+      element: <ArtistPage />
     },
     {
       path: 'nft/:nftAddress/:tokenId',
@@ -51,6 +67,7 @@ const routerArtist = createBrowserRouter([
     element: <ChooseApp /> ,
   },
   routesMarketplace,
+  routesStreaming,
   {
     path: "/artist-admin",
     element: <ArtistAdmin />,
@@ -58,6 +75,10 @@ const routerArtist = createBrowserRouter([
       {
         path: "create-nft",
         element: <CreateNft />
+      },
+      {
+        path: "create-track",
+        element: <Soon />
       }
     ]
   }
@@ -68,7 +89,8 @@ const routerUser = createBrowserRouter([
     path: "/",
     element: <ChooseAppUser /> ,
   },
-  routesMarketplace
+  routesMarketplace,
+  routesStreaming
 ]);
 
 export default function Routes() {

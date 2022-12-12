@@ -15,10 +15,11 @@ type SELL_LISTING = {
   canceled: boolean;
 };
 
-export default function NftSellListingLine({ sellId, collectionAddress, tokenId }: {
+export default function NftSellListingLine({ sellId, onBought = () => {} }: {
   collectionAddress: string;
   tokenId: number
   sellId: number;
+  onBought?: () => any
 }) {
 
   const { state: { web3 }} = useEth();
@@ -59,7 +60,10 @@ export default function NftSellListingLine({ sellId, collectionAddress, tokenId 
         {sellListing.sellerAddress !== account ? (
           <BuyButton
             style={{width: '150px'}}
-            onBought={loadListing}
+            onBought={async () => {
+              await loadListing();
+              onBought();
+            }}
             sellId={sellId}
             pricePerToken={sellListing.pricePerToken}
             maxAmountToken={parseInt(sellListing.amountOfTokens, 10)}

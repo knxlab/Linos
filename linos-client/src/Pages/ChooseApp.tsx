@@ -22,9 +22,9 @@ export default function ChooseApp() {
           <Toolbar />
 
           <Container className={Styles.container}>
-            <div className={Styles.container}>
+            <div className={Styles.container} style={{paddingTop: "20px"}}>
               <div>
-                <Button variant="contained" onClick={() => navigate('/artist-admin')}>Go to the Artist Admin</Button>
+                <Button variant="contained" onClick={() => navigate('/artist-admin/create-nft')}>Go to the Artist Admin</Button>
               </div>
               <div>
                 <Button variant="contained" onClick={() => navigate('/marketplace/all')}>Go to the marketplace</Button>

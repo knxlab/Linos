@@ -7,6 +7,7 @@ import "./LinosPlatformInterface.sol";
 import "./ArtistERC1155Factory.sol";
 import "./NftMarketPlace.sol";
 import "./FanToken.sol";
+import "./ListenToken.sol";
 
 contract LinosPlatform is LinosPlatformInterface, Ownable {
 
@@ -38,6 +39,7 @@ contract LinosPlatform is LinosPlatformInterface, Ownable {
         nftMarketPlace.setLinosPlatformAddress(address(this));
         nftMarketPlaceAddress = address(nftMarketPlace);
 
+        listenTokenAddress = address(new ListenToken(address(this)));
         nftFactoryAddress = address(new ArtistERC1155Factory(
             address(this),
             address(nftMarketPlace)

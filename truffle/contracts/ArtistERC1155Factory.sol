@@ -12,7 +12,7 @@ import "./NftMarketPlaceInterface.sol";
   */
 contract ArtistERC1155Factory {
 
-    event NFTCollectionCreated(string _collectionName, address _collectionAddress, uint _timestamp);
+    event NFTCollectionCreated(string _collectionName, address _collectionAddress, address _artistAddress, uint _timestamp);
 
     address _linosPlatformAddress;
     address _nftMarketPlaceAddress;
@@ -47,7 +47,7 @@ contract ArtistERC1155Factory {
 
       nftCollection.setFanTokenAddress(LinosPlatformInterface(_linosPlatformAddress).getArtist(msg.sender).fanTokenAddress);
       nftCollection.transferOwnership(msg.sender);
-      emit NFTCollectionCreated(_collectionName, address(nftCollection), block.timestamp);
+      emit NFTCollectionCreated(_collectionName, address(nftCollection), msg.sender, block.timestamp);
 
       NftMarketPlaceInterface nftMarketPlace = NftMarketPlaceInterface(_nftMarketPlaceAddress);
       nftMarketPlace.whiteListNftCollection(address(nftCollection));

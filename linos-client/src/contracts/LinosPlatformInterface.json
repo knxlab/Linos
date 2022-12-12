@@ -107,15 +107,15 @@
     "absolutePath": "project:/contracts/LinosPlatformInterface.sol",
     "exportedSymbols": {
       "LinosPlatformInterface": [
-        996
+        1019
       ]
     },
-    "id": 997,
+    "id": 1020,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 953,
+        "id": 976,
         "literals": [
           "solidity",
           "^",
@@ -132,9 +132,9 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "fullyImplemented": false,
-        "id": 996,
+        "id": 1019,
         "linearizedBaseContracts": [
-          996
+          1019
         ],
         "name": "LinosPlatformInterface",
         "nameLocation": "69:22:5",
@@ -142,16 +142,16 @@
         "nodes": [
           {
             "canonicalName": "LinosPlatformInterface.Track",
-            "id": 958,
+            "id": 981,
             "members": [
               {
                 "constant": false,
-                "id": 955,
+                "id": 978,
                 "mutability": "mutable",
                 "name": "name",
                 "nameLocation": "154:4:5",
                 "nodeType": "VariableDeclaration",
-                "scope": 958,
+                "scope": 981,
                 "src": "147:11:5",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -160,7 +160,7 @@
                   "typeString": "string"
                 },
                 "typeName": {
-                  "id": 954,
+                  "id": 977,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
                   "src": "147:6:5",
@@ -173,12 +173,12 @@
               },
               {
                 "constant": false,
-                "id": 957,
+                "id": 980,
                 "mutability": "mutable",
                 "name": "coverUri",
                 "nameLocation": "171:8:5",
                 "nodeType": "VariableDeclaration",
-                "scope": 958,
+                "scope": 981,
                 "src": "164:15:5",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -187,7 +187,7 @@
                   "typeString": "string"
                 },
                 "typeName": {
-                  "id": 956,
+                  "id": 979,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
                   "src": "164:6:5",
@@ -202,22 +202,22 @@
             "name": "Track",
             "nameLocation": "103:5:5",
             "nodeType": "StructDefinition",
-            "scope": 996,
+            "scope": 1019,
             "src": "96:88:5",
             "visibility": "public"
           },
           {
             "canonicalName": "LinosPlatformInterface.Artist",
-            "id": 967,
+            "id": 990,
             "members": [
               {
                 "constant": false,
-                "id": 960,
+                "id": 983,
                 "mutability": "mutable",
                 "name": "name",
                 "nameLocation": "215:4:5",
                 "nodeType": "VariableDeclaration",
-                "scope": 967,
+                "scope": 990,
                 "src": "208:11:5",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -226,7 +226,7 @@
                   "typeString": "string"
                 },
                 "typeName": {
-                  "id": 959,
+                  "id": 982,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
                   "src": "208:6:5",
@@ -239,12 +239,12 @@
               },
               {
                 "constant": false,
-                "id": 962,
+                "id": 985,
                 "mutability": "mutable",
                 "name": "fanTokenAddress",
                 "nameLocation": "233:15:5",
                 "nodeType": "VariableDeclaration",
-                "scope": 967,
+                "scope": 990,
                 "src": "225:23:5",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -253,7 +253,7 @@
                   "typeString": "address"
                 },
                 "typeName": {
-                  "id": 961,
+                  "id": 984,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
                   "src": "225:7:5",
@@ -267,12 +267,12 @@
               },
               {
                 "constant": false,
-                "id": 964,
+                "id": 987,
                 "mutability": "mutable",
                 "name": "isRegistered",
                 "nameLocation": "259:12:5",
                 "nodeType": "VariableDeclaration",
-                "scope": 967,
+                "scope": 990,
                 "src": "254:17:5",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -281,7 +281,7 @@
                   "typeString": "bool"
                 },
                 "typeName": {
-                  "id": 963,
+                  "id": 986,
                   "name": "bool",
                   "nodeType": "ElementaryTypeName",
                   "src": "254:4:5",
@@ -294,12 +294,12 @@
               },
               {
                 "constant": false,
-                "id": 966,
+                "id": 989,
                 "mutability": "mutable",
                 "name": "isValid",
                 "nameLocation": "282:7:5",
                 "nodeType": "VariableDeclaration",
-                "scope": 967,
+                "scope": 990,
                 "src": "277:12:5",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -308,7 +308,7 @@
                   "typeString": "bool"
                 },
                 "typeName": {
-                  "id": 965,
+                  "id": 988,
                   "name": "bool",
                   "nodeType": "ElementaryTypeName",
                   "src": "277:4:5",
@@ -323,22 +323,22 @@
             "name": "Artist",
             "nameLocation": "195:6:5",
             "nodeType": "StructDefinition",
-            "scope": 996,
+            "scope": 1019,
             "src": "188:106:5",
             "visibility": "public"
           },
           {
             "canonicalName": "LinosPlatformInterface.User",
-            "id": 972,
+            "id": 995,
             "members": [
               {
                 "constant": false,
-                "id": 969,
+                "id": 992,
                 "mutability": "mutable",
                 "name": "name",
                 "nameLocation": "323:4:5",
                 "nodeType": "VariableDeclaration",
-                "scope": 972,
+                "scope": 995,
                 "src": "316:11:5",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -347,7 +347,7 @@
                   "typeString": "string"
                 },
                 "typeName": {
-                  "id": 968,
+                  "id": 991,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
                   "src": "316:6:5",
@@ -360,12 +360,12 @@
               },
               {
                 "constant": false,
-                "id": 971,
+                "id": 994,
                 "mutability": "mutable",
                 "name": "isRegistered",
                 "nameLocation": "338:12:5",
                 "nodeType": "VariableDeclaration",
-                "scope": 972,
+                "scope": 995,
                 "src": "333:17:5",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -374,7 +374,7 @@
                   "typeString": "bool"
                 },
                 "typeName": {
-                  "id": 970,
+                  "id": 993,
                   "name": "bool",
                   "nodeType": "ElementaryTypeName",
                   "src": "333:4:5",
@@ -389,13 +389,13 @@
             "name": "User",
             "nameLocation": "305:4:5",
             "nodeType": "StructDefinition",
-            "scope": 996,
+            "scope": 1019,
             "src": "298:57:5",
             "visibility": "public"
           },
           {
             "functionSelector": "b949c804",
-            "id": 980,
+            "id": 1003,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
@@ -403,17 +403,17 @@
             "nameLocation": "368:9:5",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 975,
+              "id": 998,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 974,
+                  "id": 997,
                   "mutability": "mutable",
                   "name": "artistAddress",
                   "nameLocation": "386:13:5",
                   "nodeType": "VariableDeclaration",
-                  "scope": 980,
+                  "scope": 1003,
                   "src": "378:21:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -422,7 +422,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 973,
+                    "id": 996,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "378:7:5",
@@ -438,41 +438,41 @@
               "src": "377:23:5"
             },
             "returnParameters": {
-              "id": 979,
+              "id": 1002,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 978,
+                  "id": 1001,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 980,
+                  "scope": 1003,
                   "src": "423:13:5",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_Artist_$967_memory_ptr",
+                    "typeIdentifier": "t_struct$_Artist_$990_memory_ptr",
                     "typeString": "struct LinosPlatformInterface.Artist"
                   },
                   "typeName": {
-                    "id": 977,
+                    "id": 1000,
                     "nodeType": "UserDefinedTypeName",
                     "pathNode": {
-                      "id": 976,
+                      "id": 999,
                       "name": "Artist",
                       "nameLocations": [
                         "423:6:5"
                       ],
                       "nodeType": "IdentifierPath",
-                      "referencedDeclaration": 967,
+                      "referencedDeclaration": 990,
                       "src": "423:6:5"
                     },
-                    "referencedDeclaration": 967,
+                    "referencedDeclaration": 990,
                     "src": "423:6:5",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Artist_$967_storage_ptr",
+                      "typeIdentifier": "t_struct$_Artist_$990_storage_ptr",
                       "typeString": "struct LinosPlatformInterface.Artist"
                     }
                   },
@@ -481,7 +481,7 @@
               ],
               "src": "422:15:5"
             },
-            "scope": 996,
+            "scope": 1019,
             "src": "359:79:5",
             "stateMutability": "view",
             "virtual": false,
@@ -489,7 +489,7 @@
           },
           {
             "functionSelector": "6f77926b",
-            "id": 988,
+            "id": 1011,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
@@ -497,17 +497,17 @@
             "nameLocation": "450:7:5",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 983,
+              "id": 1006,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 982,
+                  "id": 1005,
                   "mutability": "mutable",
                   "name": "userAddress",
                   "nameLocation": "466:11:5",
                   "nodeType": "VariableDeclaration",
-                  "scope": 988,
+                  "scope": 1011,
                   "src": "458:19:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -516,7 +516,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 981,
+                    "id": 1004,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "458:7:5",
@@ -532,41 +532,41 @@
               "src": "457:21:5"
             },
             "returnParameters": {
-              "id": 987,
+              "id": 1010,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 986,
+                  "id": 1009,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 988,
+                  "scope": 1011,
                   "src": "501:11:5",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_User_$972_memory_ptr",
+                    "typeIdentifier": "t_struct$_User_$995_memory_ptr",
                     "typeString": "struct LinosPlatformInterface.User"
                   },
                   "typeName": {
-                    "id": 985,
+                    "id": 1008,
                     "nodeType": "UserDefinedTypeName",
                     "pathNode": {
-                      "id": 984,
+                      "id": 1007,
                       "name": "User",
                       "nameLocations": [
                         "501:4:5"
                       ],
                       "nodeType": "IdentifierPath",
-                      "referencedDeclaration": 972,
+                      "referencedDeclaration": 995,
                       "src": "501:4:5"
                     },
-                    "referencedDeclaration": 972,
+                    "referencedDeclaration": 995,
                     "src": "501:4:5",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_User_$972_storage_ptr",
+                      "typeIdentifier": "t_struct$_User_$995_storage_ptr",
                       "typeString": "struct LinosPlatformInterface.User"
                     }
                   },
@@ -575,7 +575,7 @@
               ],
               "src": "500:13:5"
             },
-            "scope": 996,
+            "scope": 1019,
             "src": "441:73:5",
             "stateMutability": "view",
             "virtual": false,
@@ -583,7 +583,7 @@
           },
           {
             "functionSelector": "ba7eea15",
-            "id": 995,
+            "id": 1018,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
@@ -591,17 +591,17 @@
             "nameLocation": "526:13:5",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 991,
+              "id": 1014,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 990,
+                  "id": 1013,
                   "mutability": "mutable",
                   "name": "artistAddress",
                   "nameLocation": "548:13:5",
                   "nodeType": "VariableDeclaration",
-                  "scope": 995,
+                  "scope": 1018,
                   "src": "540:21:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -610,7 +610,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 989,
+                    "id": 1012,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "540:7:5",
@@ -626,17 +626,17 @@
               "src": "539:23:5"
             },
             "returnParameters": {
-              "id": 994,
+              "id": 1017,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 993,
+                  "id": 1016,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 995,
+                  "scope": 1018,
                   "src": "585:4:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -645,7 +645,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 992,
+                    "id": 1015,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "585:4:5",
@@ -659,14 +659,14 @@
               ],
               "src": "584:6:5"
             },
-            "scope": 996,
+            "scope": 1019,
             "src": "517:74:5",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 997,
+        "scope": 1020,
         "src": "59:534:5",
         "usedErrors": []
       }
@@ -679,7 +679,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.10",
-  "updatedAt": "2022-12-11T14:00:48.769Z",
+  "updatedAt": "2022-12-12T00:34:26.831Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

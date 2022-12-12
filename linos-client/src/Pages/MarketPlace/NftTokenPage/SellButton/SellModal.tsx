@@ -124,7 +124,7 @@ export default function SellModal({
                           withComma = true;
                         }
                         const amount = parseFloat(e.target.value) || 0;
-                        setPricePerToken(amount === 0 ? "" : (String(amount) + (withComma ? "." : "")));
+                        setPricePerToken((String(amount) + (withComma ? "." : "")));
                       }}
                     />
                   </div>

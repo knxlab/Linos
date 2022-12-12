@@ -22,7 +22,7 @@ export default function ChooseAppUser() {
           <Toolbar />
 
           <Container className={Styles.container}>
-            <div className={Styles.container}>
+            <div className={Styles.container} style={{paddingTop: "20px"}}>
               <div>
                 <Button variant="contained" onClick={() => navigate('/marketplace/all')}>Go to the marketplace</Button>
               </div>

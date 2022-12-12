@@ -17,7 +17,7 @@ export default function MarketPlaceNftTokenPage() {
   const { nftAddress, tokenId } = useParams();
 
   const { linosNftMarketPlaceContract } = useLinosContext();
-  const { nftCollection, nftToken } = useNftToken({ collectionAddress: nftAddress, tokenId: parseInt(tokenId || "0", 10) });
+  const { nftCollection, nftToken, refetch } = useNftToken({ collectionAddress: nftAddress, tokenId: parseInt(tokenId || "0", 10) });
   const { artist } = useArtist({ address: nftCollection.owner });
 
   const [sellEvents] = useEvents({ contract: linosNftMarketPlaceContract, eventName: "SellEvent" });
@@ -48,6 +48,7 @@ export default function MarketPlaceNftTokenPage() {
 
         {!!nftAddress && tokenId !== undefined && (
           <NftTokenListLine
+            key={nftToken.userBalance}
             tokenId={parseInt(tokenId, 10)}
             collectionAddress={nftAddress}
             onClick={() => {}}
@@ -64,6 +65,9 @@ export default function MarketPlaceNftTokenPage() {
               collectionAddress={nftAddress}
               tokenId={parseInt(tokenId, 10)}
               sellId={parseInt(sellEvent.returnValues.sellId, 10)}
+              onBought={() => {
+                refetch();
+              }}
             />
           ))}
         </div>
