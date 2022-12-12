@@ -1,5 +1,7 @@
 import { Button } from "@mui/material";
+// @ts-ignore
 import { useEth } from "../../contexts/EthContext";
+// @ts-ignore
 import { ReactComponent as Icon } from './metamask.svg';
 
 export default function MetaMaskLoginBtn() {
