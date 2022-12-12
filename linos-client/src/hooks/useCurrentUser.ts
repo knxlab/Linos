@@ -12,6 +12,7 @@ const DefaultArtist: ARTIST = {
   name: "",
   isRegistered: false,
   isValid: false,
+  fanTokenAddress: ""
 };
 
 const DefaultUser: USER = {
@@ -51,6 +52,7 @@ export default function useCurrentUser({
               name: artist.name,
               isRegistered: artist.isRegistered,
               isValid: artist.isValid,
+              fanTokenAddress: artist.fanTokenAddress
             })
         } catch (e) {
             console.log("Normal error due to getVoter try");

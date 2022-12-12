@@ -52,7 +52,7 @@ export default function SellModal({
 
     const onPressSave = async () => {
         if (!linosNftMarketPlaceContract) {
-            alert("An error has occured, no VotingFactory available");
+            alert("An error has occured, no contract available");
             return;
         }
         try {

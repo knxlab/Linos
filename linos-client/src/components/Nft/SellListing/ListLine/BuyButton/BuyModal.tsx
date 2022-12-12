@@ -65,7 +65,7 @@ export default function BuyModal({
       const totalPrice = getTotalPriceString();
 
       if (!linosNftMarketPlaceContract) {
-          alert("An error has occured, no VotingFactory available");
+          alert("An error has occured, no NftMarketplaceContract available");
           return;
       }
       try {
