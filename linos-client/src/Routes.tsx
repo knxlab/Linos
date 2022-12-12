@@ -20,12 +20,6 @@ const Soon = () => {
   return (<div>Soon..</div>)
 }
 
-const routerUnlogged = createBrowserRouter([
-  {
-    path: "/",
-    element: <LoginRegister /> ,
-  }
-]);
 
 
 const routesStreaming = {
@@ -59,6 +53,15 @@ const routesMarketplace = {
     }
   ]
 };
+
+const routerUnlogged = createBrowserRouter([
+  {
+    path: "/",
+    element: <LoginRegister />,
+  },
+  routesMarketplace
+]);
+
 
 
 const routerArtist = createBrowserRouter([
