@@ -37,7 +37,7 @@ export default function AddingImages({
   });
 
   return (
-    <ContainerFullHeightFlex className={styles.container}>
+    <div className={styles.container}>
       <div className={styles.dropZoneContainer}>
         <div {...getRootProps({className: 'dropzone'})}>
           <input {...getInputProps()} />
@@ -72,6 +72,6 @@ export default function AddingImages({
           <Divider />
         </div>
       ))}
-    </ContainerFullHeightFlex>
+    </div>
   );
 }

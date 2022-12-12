@@ -4,6 +4,7 @@ import useCurrentAccount from '../../hooks/useCurrentAccount';
 import Jazzicon, { jsNumberForAddress } from 'react-jazzicon';
 import DarkModeSwitch from './DarkModeSwitch';
 import styles from './styles.module.css';
+import { useLinosContext } from '../../contexts/Linos/Context';
 
 function AccountChip({ address }: { address: string }) {
     return (
@@ -19,6 +20,8 @@ function AccountChip({ address }: { address: string }) {
 
 export default function AppBar({ children, title }: { children?: React.ReactNode; title: string }) {
     const account = useCurrentAccount();
+    const { listenTokenBalance } = useLinosContext();
+
     return (
         <MaterialAppBar position="absolute" sx={{ width: "100%" }}>
             <Toolbar
@@ -43,6 +46,7 @@ export default function AppBar({ children, title }: { children?: React.ReactNode
 
                 <div>
                     <DarkModeSwitch />
+                    {account && <Chip label={`LINOS : ${listenTokenBalance}`} style={{marginRight: '10px'}} />}
                     {account && <AccountChip address={account} />}
                 </div>
 

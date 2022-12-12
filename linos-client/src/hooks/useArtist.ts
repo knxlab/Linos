@@ -8,12 +8,14 @@ export type ARTIST = {
   name: string;
   isRegistered: boolean;
   isValid: boolean;
+  fanTokenAddress: string;
 }
 
 const DefaultValue: ARTIST = {
   name: "",
   isRegistered: false,
-  isValid: false
+  isValid: false,
+  fanTokenAddress: "",
 };
 
 export default function useArtist({ address }: { address?: string; }): { artist: ARTIST; refetch: () => Promise<any>} {

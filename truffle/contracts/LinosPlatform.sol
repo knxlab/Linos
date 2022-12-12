@@ -11,7 +11,6 @@ import "./ListenToken.sol";
 
 contract LinosPlatform is LinosPlatformInterface, Ownable {
 
-
     address public listenTokenAddress;
     address public nftFactoryAddress;
     address public nftMarketPlaceAddress;
@@ -46,6 +45,18 @@ contract LinosPlatform is LinosPlatformInterface, Ownable {
         ));
 
         nftMarketPlace.setNftFactoryAddress(nftFactoryAddress);
+    }
+
+    function mintListenToken(address to, uint amount) external onlyOwner {
+        ListenToken(listenTokenAddress).mint(to, amount);
+    }
+
+    function boostArtist(address artistAddress, uint amount) external onlyValidArtist(artistAddress) {
+        ListenToken listenToken = ListenToken(listenTokenAddress);
+        FanToken fanToken = FanToken(artists[artistAddress].fanTokenAddress);
+
+        fanToken.mint(msg.sender, amount);
+        listenToken.linosTransferFrom(msg.sender, artistAddress, amount);
     }
 
     function getArtist(address artistAddress) external view returns(Artist memory) {

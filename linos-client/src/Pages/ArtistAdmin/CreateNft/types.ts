@@ -16,5 +16,8 @@ export type NFTConfig = {
     name?: string;
     maxSupply?: number;
     file: File;
-  }>
+  }>;
+
+  mustBeAFan?: boolean;
+  minimumFanTokenRequiredToMint?: number;
 }

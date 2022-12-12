@@ -37,6 +37,7 @@ export default function CreateNftUpload({
       ipfs,
       files: nftConfig.nfts.map(nft => nft.file),
       onProgress: (percent) => {
+        console.log("percent", percent);
         setProgress(Math.round(percent * 100))
       }
     })
@@ -71,7 +72,7 @@ export default function CreateNftUpload({
       nftConfig.nfts.map(nft => nft.maxSupply),
       {
         distributionType: nftConfig.type,
-        minimumFanTokenRequiredToMint: 0,
+        minimumFanTokenRequiredToMint: nftConfig.minimumFanTokenRequiredToMint || 0,
         maxTotalMintPerWallet: 0,
         maxMintPerWallerPerToken: 0
       }

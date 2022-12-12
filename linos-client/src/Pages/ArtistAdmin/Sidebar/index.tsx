@@ -22,7 +22,7 @@ export default function Sidebar() {
                         <ListItemButton onClick={() => {
                             navigate("/")
                         }}>
-                            <Title>Linos Marketplace</Title>
+                            <Title>Linos For Artist</Title>
                         </ListItemButton>
                     </ListItem>
                     <NavLink title={"Create NFT Collection"} to={"/artist-admin/create-nft"} />
@@ -31,11 +31,7 @@ export default function Sidebar() {
 
                     <Divider />
 
-
-                    <ListItem>
-                        <Title>Linos Music</Title>
-                    </ListItem>
-                    <NavLink title={"Create Track"} to={"/artist-admin/create-track"} />
+                    <NavLink title={"Track for Linos Streaming"} to={"/artist-admin/create-track"} />
                     {/* <NavLink title={"My music"} to={"/artist-admin/tracks"} /> */}
 
                 </List>

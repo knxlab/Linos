@@ -20,7 +20,9 @@ export default function CreateNft() {
     type: NFTTypes.SELL,
     collectionName: "",
     count: 1,
-    nfts: []
+    nfts: [],
+    mustBeAFan: false,
+    minimumFanTokenRequiredToMint: 0
   });
 
   const [step, setStep] = useState<NftCreateStep>(0);

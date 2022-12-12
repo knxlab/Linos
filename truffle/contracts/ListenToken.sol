@@ -21,7 +21,9 @@ contract ListenToken is ERC20, Ownable {
         address to,
         uint256 amount
     ) override internal virtual {
-        require(_externalTransferEnabled, "Token transfers are not allowed");
+        if (msg.sender != owner()) {
+          require(_externalTransferEnabled, "Token transfers are not allowed");
+        }
         super._beforeTokenTransfer(from, to, amount);
     }
 
