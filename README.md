@@ -2,12 +2,10 @@
 
 ## Demo Links
 
-Linked to local ganache => [https://voting-dapp-david-quenet.vercel.app/](https://voting-dapp-david-quenet.vercel.app/)
-
-Linked to Goerli TestNet => [https://voting-dapp-nuo7ih24q-knxlab.vercel.app/](https://voting-dapp-nuo7ih24q-knxlab.vercel.app/)
+Linked to Goerli TestNet => [https://linos.wtf/](https://linos.wtf/)
 
 ## Demo video
-[https://youtu.be/57DFA0ukBxE](https://youtu.be/57DFA0ukBxE)
+[https://youtu.be/gBxfdW6lfUY](https://youtu.be/gBxfdW6lfUY)
 
 
 ## Installation
@@ -34,7 +32,7 @@ Start the react dev server.
 
 ```sh
 $ cd client
-$ yarn start
+$ yarn dev
 ```
 
 
