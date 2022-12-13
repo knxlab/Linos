@@ -22,8 +22,6 @@ export default function MarketPlaceNftTokenPage() {
 
   const [sellEvents] = useEvents({ contract: linosNftMarketPlaceContract, eventName: "SellEvent" });
 
-  console.log("sellEvents", sellEvents);
-
   return (
     <ContainerFullHeightFlex className={styles.container}>
 
@@ -50,10 +48,10 @@ export default function MarketPlaceNftTokenPage() {
 
         {!!nftAddress && tokenId !== undefined && (
           <NftTokenListLine
-            key={nftToken.userBalance}
             tokenId={parseInt(tokenId, 10)}
             collectionAddress={nftAddress}
             onClick={() => {}}
+            onAnyActionEnd={refetch}
           />
         )}
 

@@ -25,7 +25,6 @@ export default function Slider({
 
   const handleSliderChange = (event: Event, newValue: number | number[]) => {
     if (typeof newValue == 'number') {
-      console.log("VALUE", newValue)
       onChange(Math.min(max, Math.max(newValue, min)));
     }
   };
@@ -35,7 +34,6 @@ export default function Slider({
   };
 
   const handleBlur = () => {
-    console.log("VAL ?", value)
     if (value < min) {
       onChange(min);
     } else if (value > max) {

@@ -22,7 +22,6 @@ export default function MarketPlaceNftPage() {
     nftIds.push(index);
   }
 
-  console.log("nftIds", nftIds);
   return (
     <ContainerFullHeightFlex className={styles.container}>
       <Toolbar />

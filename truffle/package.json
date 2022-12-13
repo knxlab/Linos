@@ -22,6 +22,8 @@
     "migrate-preprod": "truffle migrate --network=preprod",
     "seeds-dev": "truffle exec scripts/seeds.js --network development",
     "seeds-preprod": "truffle exec scripts/seeds.js --network preprod",
+    "mint-linos-dev": "truffle exec scripts/mint-linos.js --network development",
+    "mint-linos-preprod": "truffle exec scripts/mint-linos.js --network preprod",
     "migrate-goerli": "truffle migrate --network=goerli"
   },
   "author": "",

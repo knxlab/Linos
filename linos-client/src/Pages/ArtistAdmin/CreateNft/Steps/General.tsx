@@ -37,7 +37,6 @@ export default function CreateNftStepGeneral({
       }
     ).send({ from: account });
 
-    console.log(resultNft);
     if (resultNft.status) {
       navigate("/marketplace/all");
       return;

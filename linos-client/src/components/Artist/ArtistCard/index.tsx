@@ -30,7 +30,6 @@ export default function ArtistCard({ artistAddress, className }: { artistAddress
   const navigate = useNavigate();
 
   const imgId = parseInt(artistAddress[artistAddress.length - 1], 16) % 7;
-  console.log("imgId", imgId);
 
   const imgSrc = imgs[imgId];
 

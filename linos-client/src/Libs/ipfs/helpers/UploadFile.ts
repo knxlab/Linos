@@ -6,7 +6,6 @@ function readFile(file: File): Promise<Buffer> {
     return new Promise((resolve) => {
         const reader = new FileReader();
         reader.onloadend = async function() {
-            console.log("FILE HAS BEEN READ");
             const fileBuffer = Buffer.from(reader.result as ArrayBuffer);
             resolve(fileBuffer);
         }
@@ -49,13 +48,21 @@ export default async function uploadFilesToIpfs({ ipfs, files, onProgress } : { 
         totalBytes += fileBuffer.byteLength;
     }
 
+    const bytesLoaded: {[key: string]: number} = {};
+    function getBytesLoaded() {
+        return Object.values(bytesLoaded).reduce((val, i) => val + i, 0);
+    }
     for await (const result of ipfs.addAll(fileBuffers.map((fileBuffer, i) => ({
         content: fileBuffer,
         path: '/linos/' + i,
     })), {
         pin: true,
-        progress: (bytesLoaded) => {
-            onProgress(bytesLoaded/totalBytes);
+        progress: (_bytesLoaded, path) => {
+            if (!path) {
+                return;
+            }
+            bytesLoaded[path] = _bytesLoaded;
+            onProgress(getBytesLoaded()/totalBytes);
         },
         cidVersion: 1,
         wrapWithDirectory: true

@@ -24,6 +24,7 @@ export type NFT_TOKEN = {
   image: string;
   maxSupply: number;
   userBalance: number;
+  canMint: boolean;
 }
 
 const DefaultNftCollection: NFT_TOKEN = {
@@ -32,7 +33,8 @@ const DefaultNftCollection: NFT_TOKEN = {
   description: "",
   image: "",
   maxSupply: 0,
-  userBalance: 0
+  userBalance: 0,
+  canMint: false
 };
 export default function useNftToken({ collectionAddress, tokenId }: { collectionAddress?: string; tokenId?: number; }): {
   nftToken: NFT_TOKEN;
@@ -46,7 +48,6 @@ export default function useNftToken({ collectionAddress, tokenId }: { collection
     const { state: { web3 }} = useEth();
 
     const load = useCallback(async () => {
-      console.log("address", collectionAddress)
       if (!collectionAddress || tokenId === undefined) {
         return;
       }
@@ -60,6 +61,7 @@ export default function useNftToken({ collectionAddress, tokenId }: { collection
           name: await contract.methods._tokenNames(tokenId).call(),
           maxSupply: await contract.methods._maxSupply(tokenId).call(),
           userBalance: await contract.methods.balanceOf(account, tokenId).call(),
+          canMint: await contract.methods.canMint(tokenId).call({ from: account })
         };
         if (uri !== "") {
           uri = formatIpfsUri(uri, tokenId);

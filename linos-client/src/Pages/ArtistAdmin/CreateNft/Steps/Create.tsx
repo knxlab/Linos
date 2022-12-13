@@ -24,8 +24,6 @@ export default function CreateNftUpload({
   const [progress, setProgress] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(false);
 
-  console.log("ArtistERC1155TokenArtifact", ArtistERC1155TokenArtifact)
-
   const create = async () => {
     if (!ipfs) {
       return;
@@ -37,10 +35,9 @@ export default function CreateNftUpload({
       ipfs,
       files: nftConfig.nfts.map(nft => nft.file),
       onProgress: (percent) => {
-        console.log("percent", percent);
         setProgress(Math.round(percent * 100))
       }
-    })
+    });
 
     const resultJsons = await uploadJsonsToIpfs({
       ipfs,
@@ -63,8 +60,6 @@ export default function CreateNftUpload({
       onProgress: console.log
     })
 
-    console.log("resultJsons", resultJsons.cid.toString());
-    console.log("nftConfig.type", nftConfig.type);
     const method = linosNftFactoryContract.methods.createNFTCollection(
       `ipfs://${resultJsons.cid.toString()}/linos/{id}`,
       nftConfig.collectionName,
@@ -81,7 +76,6 @@ export default function CreateNftUpload({
     try {
       await method.call({ from: account });
       const resultCreateNft = await method.send({ from: account });
-      console.log("resultCreateNft", resultCreateNft)
       if (resultCreateNft.status) {
         navigate("/marketplace/all");
         return;

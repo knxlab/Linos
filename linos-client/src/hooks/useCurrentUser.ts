@@ -55,7 +55,6 @@ export default function useCurrentUser({
               fanTokenAddress: artist.fanTokenAddress
             })
         } catch (e) {
-            console.log("Normal error due to getVoter try");
             setArtist(DefaultArtist);
         }
 
@@ -66,7 +65,6 @@ export default function useCurrentUser({
               isRegistered: user.isRegistered,
             })
         } catch (e) {
-            console.log("Normal error due to getVoter try")
             setUser(DefaultUser);
         }
     }

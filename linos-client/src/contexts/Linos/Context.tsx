@@ -61,7 +61,6 @@ export function LinosContextProvider({
         const factoryAddress = await contracts.LinosPlatform.methods.nftFactoryAddress().call();
         const factoryContract = new web3.eth.Contract(NftFactoryArtifact.abi, factoryAddress);
         setLinosNftFactoryContract(factoryContract)
-        console.log("factoryAddress", factoryAddress);
       })()
     }
 
@@ -71,7 +70,6 @@ export function LinosContextProvider({
         const marketplaceContract = new web3.eth.Contract(NftMarketPlaceArtifact.abi, marketplaceAddress);
         setLinosNftMarketPlaceAddress(marketplaceAddress);
         setLinosNftMarketPlaceContract(marketplaceContract)
-        console.log("marketplaceAddress", marketplaceAddress);
       })()
     }
 
@@ -80,7 +78,6 @@ export function LinosContextProvider({
         const address = await contracts.LinosPlatform.methods.listenTokenAddress().call();
         const contract = new web3.eth.Contract(ListenTokenArtifact.abi, address);
         setListenTokenContract(contract);
-        console.log("listenToken Address", address);
       })()
     }
 

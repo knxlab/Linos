@@ -7,8 +7,6 @@
 
 const LinosPlatform = artifacts.require("LinosPlatform.sol");
 const ListenToken = artifacts.require("./ListenToken.sol");
-const ArtistERC1155Token = artifacts.require("./ArtistERC1155Token.sol");
-const ArtistERC1155Factory = artifacts.require("./ArtistERC1155Factory.sol");
 
 module.exports = async function (callback) {
   const linosInstance = await LinosPlatform.deployed();
@@ -29,6 +27,21 @@ module.exports = async function (callback) {
   try {
     await linosInstance.registerAsArtist("Orelsan", "ORL", { from: orelsan });
     await linosInstance.registerAsUser("David Quenet", { from: userDavid });
+
+    // nftFactoryInstance.createNFTCollection(
+    //   "ipfs://bafybeifkrca6zzfn5hggak2jbbjddzwhaj4b3svtwjr4lrzlcisnpb6mpm/linos/{id}",
+    //   "Test ERC1155",
+    //   ["TOKEN1", "TOKEN2"],
+    //   [11, 22],
+    //   {
+    //     distributionType: ArtistERC1155Token.DistributionType.DROP,
+    //     minimumFanTokenRequiredToMint: 1,
+    //     maxTotalMintPerWallet: 0,
+    //     maxMintPerWallerPerToken: 0
+    //   },
+    //   {from}
+    // );
+
   } catch (e) {}
 
   for (let index = 0; index < accounts.length; index++) {

@@ -3,6 +3,7 @@
 pragma solidity ^0.8.17;
 
 import "../node_modules/@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
+import "../node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "../node_modules/@openzeppelin/contracts/token/common/ERC2981.sol";
 import "../node_modules/@openzeppelin/contracts/access/Ownable.sol";
 import "../node_modules/@openzeppelin/contracts/utils/Strings.sol";
@@ -119,6 +120,24 @@ contract ArtistERC1155Token is ERC1155, ERC2981, Ownable {
         _mintBatch(newOwner, ids, _maxSupply, "");
     }
 
+    function canMint(uint _id) external view returns (bool) {
+        bool _canMint = (
+            _options.distributionType == DistributionType.DROP &&
+            _id < _tokenNames.length &&
+            _idToTotalSupply[_id] + 1 <= _maxSupply[_id] &&
+            (_options.maxTotalMintPerWallet == 0 || _countTotalMintPerWallet[msg.sender] + 1 <= _options.maxTotalMintPerWallet) &&
+            (_options.maxMintPerWallerPerToken == 0 || _countTotalMintPerWalletPerToken[_id][msg.sender] + 1 <= _options.maxMintPerWallerPerToken)
+        );
+        if (!_canMint) {
+            return false;
+        }
+        if (_options.minimumFanTokenRequiredToMint == 0) {
+            return true;
+        }
+        IERC20 fanToken = IERC20(fanTokenAddress);
+        return fanToken.balanceOf(msg.sender) >= _options.minimumFanTokenRequiredToMint;
+    }
+
     /*
      * mint(address account, uint _id)
      *
@@ -126,7 +145,7 @@ contract ArtistERC1155Token is ERC1155, ERC2981, Ownable {
      * _id - the ID being minted
      * A user can only mint one token
     */
-    function PublicMint(uint _id) public returns (uint)
+    function PublicMint(uint _id) external returns (uint)
     {
         require(_options.distributionType == DistributionType.DROP, "Cannot mint this type of token");
         require(_id < _tokenNames.length, "Token does not exists");
@@ -142,10 +161,11 @@ contract ArtistERC1155Token is ERC1155, ERC2981, Ownable {
             _options.maxMintPerWallerPerToken == 0 || _countTotalMintPerWalletPerToken[_id][msg.sender] + 1 <= _options.maxMintPerWallerPerToken,
             "You minted too much of this token"
         );
-        require(
-            _options.minimumFanTokenRequiredToMint == 0,
-            "You are not fan enought => Stream or boost !"
-        );
+
+        if (_options.minimumFanTokenRequiredToMint != 0) {
+            IERC20 fanToken = IERC20(fanTokenAddress);
+            require(fanToken.balanceOf(msg.sender) >= _options.minimumFanTokenRequiredToMint, "not fan enought");
+        }
 
         _countTotalMintPerWallet[msg.sender]++;
         _countTotalMintPerWalletPerToken[_id][msg.sender]++;

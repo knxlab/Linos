@@ -27,6 +27,7 @@ export default function AllNfts() {
       <Box className={styles.artistsContainer}>
         {artists.map(artistEvent => (
           <ArtistCard
+            key={artistEvent.returnValues.artistAddress}
             artistAddress={artistEvent.returnValues.artistAddress}
             className={styles.artistCard}
           />

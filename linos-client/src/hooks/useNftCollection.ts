@@ -49,7 +49,6 @@ export default function useNftCollection({ address, tokenId }: { address?: strin
 
 
     const load = useCallback(async () => {
-      console.log("address", address)
       if (!address) {
         return;
       }
@@ -74,8 +73,6 @@ export default function useNftCollection({ address, tokenId }: { address?: strin
     useEffect(() => {
         load();
     }, [load]);
-
-    console.log("nftCollection", value);
 
     return {nftCollection: value, refetch: load};
 }

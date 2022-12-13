@@ -57,7 +57,6 @@ export default function SellModal({
         }
         try {
             setLoading(true);
-            console.log("linosNftMarketPlaceContract.address", linosNftMarketPlaceAddress);
             const tokenContract = new web3.eth.Contract(NftArtifact.abi, tokenAddress);
             const isApproved = await tokenContract.methods.isApprovedForAll(account, linosNftMarketPlaceAddress).call();
             if (!isApproved) {

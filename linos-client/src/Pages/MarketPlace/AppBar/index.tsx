@@ -167,9 +167,7 @@ export default function ResponsiveAppBar() {
               <Chip label={`LINOS : ${listenTokenBalance}`} style={{marginRight: '10px'}} />
 
             </Box>
-            <Tooltip title="Open settings">
-                <AccountChip address={account} onClick={handleOpenUserMenu} />
-            </Tooltip>
+            <AccountChip address={account} onClick={handleOpenUserMenu} />
             <Menu
               sx={{ mt: '45px' }}
               id="menu-appbar"
