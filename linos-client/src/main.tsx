@@ -32,6 +32,13 @@ function AppRoot() {
       createTheme({
         palette: {
           mode,
+          ...(mode === 'dark' ? {
+            background: {
+              paper: '#242424',
+              default: '#242424',
+
+            }
+          } : {})
         },
       }),
     [mode],

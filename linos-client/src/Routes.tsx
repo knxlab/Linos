@@ -1,6 +1,7 @@
 import {
   createBrowserRouter,
   RouterProvider,
+  useNavigate,
 } from "react-router-dom";
 import ChooseApp from "./Pages/ChooseApp";
 import ArtistAdmin from "./Pages/ArtistAdmin";
@@ -14,6 +15,7 @@ import YourListings from "./Pages/MarketPlace/YourListings";
 import MarketPlaceNftPage from "./Pages/MarketPlace/NftPage";
 import MarketPlaceNftTokenPage from "./Pages/MarketPlace/NftTokenPage";
 import ArtistPage from "./Pages/MarketPlace/ArtistPage";
+import { useEffect } from "react";
 
 
 const Soon = () => {
@@ -54,12 +56,23 @@ const routesMarketplace = {
   ]
 };
 
+const RedirectRoot = () => {
+  const navigate  = useNavigate();
+
+  useEffect(() => {
+    navigate("/");
+  }, [])
+  return (
+    null
+  )
+}
+
 const routerUnlogged = createBrowserRouter([
   {
     path: "/",
     element: <LoginRegister />,
+    errorElement: <RedirectRoot />
   },
-  routesMarketplace
 ]);
 
 

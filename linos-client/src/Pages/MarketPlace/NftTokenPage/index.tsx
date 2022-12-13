@@ -1,4 +1,4 @@
-import { Button, Chip, Divider } from "@mui/material";
+import { Box, Button, Chip, Divider, Toolbar } from "@mui/material";
 import { useParams } from "react-router-dom";
 import AppBar from "../../../components/AppBar";
 import NftSellListingLine from "../../../components/Nft/SellListing/ListLine";
@@ -26,12 +26,14 @@ export default function MarketPlaceNftTokenPage() {
 
   return (
     <ContainerFullHeightFlex className={styles.container}>
-      <AppBar title={nftToken.name + " - " + nftCollection.collectionName + (!!artist.name ? ` -- by ${artist.name}` : "")}>
-        <Chip label={"Balance : " + nftToken.userBalance} />
-      </AppBar>
 
-      <ContainerFullHeightFlex hasToolBar className={styles.flexAndGrow}>
+      <Toolbar />
+      <Box className={styles.flexAndGrow}>
 
+        <div>
+          <Title>{nftToken.name + " - " + nftCollection.collectionName + (!!artist.name ? ` -- by ${artist.name}` : "")}</Title>
+          <Chip label={"Your Balance : " + nftToken.userBalance} />
+        </div>
         {!!nftAddress && nftToken.userBalance > 0 && (
           <div className={styles.actionContainer}>
             <div />
@@ -58,7 +60,7 @@ export default function MarketPlaceNftTokenPage() {
         <Divider />
 
         <div style={{marginTop: '30px'}}>
-          <Title>Listings</Title>
+          <Title>All listings</Title>
           {!!nftAddress && tokenId !== undefined && sellEvents.filter(sellEvent => sellEvent.returnValues.tokenAddress === nftAddress).map(sellEvent => (
             <NftSellListingLine
               key={sellEvent.returnValues.sellId}
@@ -74,7 +76,7 @@ export default function MarketPlaceNftTokenPage() {
 
 
 
-      </ContainerFullHeightFlex>
+      </Box>
     </ContainerFullHeightFlex>
   );
 }

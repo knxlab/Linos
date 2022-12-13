@@ -7,18 +7,13 @@ const ArtistERC1155Factory = artifacts.require("./ArtistERC1155Factory.sol");
 
 module.exports = async function (deployer, network, accounts) {
 
+  const owner = accounts[0];
+
   await deployer.deploy(LinosPlatform);
   const linosInstance = await LinosPlatform.deployed();
 
-  const owner = accounts[0];
-
-  const seedAccounts = [
-    "0xbc5A3940775374568227884b5Cb1F50d4823212E",
-    "0x55840eE140F60DA31D29De1f9e0Da8b46106A6fC"
-  ]
-
-  for (let index = 0; index < seedAccounts.length; index++) {
+  for (let index = 0; index < accounts.length; index++) {
     const account = accounts[index];
-    await linosInstance.mintListenToken(account, Math.round(Math.random()*1000), { from: owner });
+    await linosInstance.mintListenToken(account, Math.round(Math.random()*3042), { from: owner });
   }
 };

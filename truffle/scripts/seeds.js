@@ -6,24 +6,37 @@
 */
 
 const LinosPlatform = artifacts.require("LinosPlatform.sol");
+const ListenToken = artifacts.require("./ListenToken.sol");
 const ArtistERC1155Token = artifacts.require("./ArtistERC1155Token.sol");
 const ArtistERC1155Factory = artifacts.require("./ArtistERC1155Factory.sol");
 
 module.exports = async function (callback) {
   const linosInstance = await LinosPlatform.deployed();
-  const accounts = await web3.eth.getAccounts()
-
-  console.log(accounts);
-  console.log(linosInstance.address);
+  const accounts = await web3.eth.getAccounts();
 
   const owner = accounts[0];
   const orelsan = accounts[1];
   const userDavid = accounts[2];
 
+  const listenTokenAddress = await linosInstance.listenTokenAddress.call({ from: owner });
+  console.log("listenTokenAddress", listenTokenAddress);
+  const listenTokenInstance = await ListenToken.at(listenTokenAddress);
+
+  console.log(accounts);
+  console.log("listenTokenInstance address", listenTokenInstance.address);
+
+
   try {
     await linosInstance.registerAsArtist("Orelsan", "ORL", { from: orelsan });
     await linosInstance.registerAsUser("David Quenet", { from: userDavid });
   } catch (e) {}
+
+  for (let index = 0; index < accounts.length; index++) {
+    const account = accounts[index];
+    const listenTokenBalance = await listenTokenInstance.balanceOf(account);
+    console.log("ACCOUNT = ", account, listenTokenBalance);
+    await linosInstance.mintListenToken(account, Math.round(Math.random()*2000), { from: owner });
+  }
 
   // const nftFactoryAddress = await linosInstance.nftFactoryAddress.call({ from: owner });
   // const nftFactoryInstance = await ArtistERC1155Factory.at(nftFactoryAddress);

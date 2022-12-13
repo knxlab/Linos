@@ -1,16 +1,20 @@
 import { Chip } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import useEth from '../../../../contexts/EthContext/useEth';
 import useArtist from '../../../../hooks/useArtist';
 import useCurrentAccount from '../../../../hooks/useCurrentAccount';
 import useFanTokenBalance from '../../../../hooks/useFanTokenBalance';
-import useNftCollection from '../../../../hooks/useNftCollection';
 import useNftToken from '../../../../hooks/useNftToken';
 import Title from '../../../../Layout/Title';
 import styles from './styles.module.css';
 
 
-export default function NftTokenListLine({ collectionAddress, tokenId, onClick }: { tokenId: number; collectionAddress: string; onClick: () => any }) {
+export default function NftTokenListLine({
+  collectionAddress, tokenId, onClick, displayBalance,
+  displayArtist
+}: {
+  tokenId: number; collectionAddress: string; onClick: () => any; displayBalance?: boolean;
+  displayArtist?: boolean;
+}) {
 
   const navigate = useNavigate();
   const account = useCurrentAccount();
@@ -19,7 +23,8 @@ export default function NftTokenListLine({ collectionAddress, tokenId, onClick }
   const { artist } = useArtist({ address: nftCollection.owner });
   const { fanTokenBalance } = useFanTokenBalance({ fanTokenAddress: artist.fanTokenAddress, account });
 
-  const canMint = fanTokenBalance > parseInt(nftCollection.options.minimumFanTokenRequiredToMint, 10);
+  const minimumFanTokenRequiredToMint = nftCollection.options.minimumFanTokenRequiredToMint;
+  const canMint = fanTokenBalance > minimumFanTokenRequiredToMint;
 
   return (
     <div className={styles.container} onClick={onClick}>
@@ -31,17 +36,19 @@ export default function NftTokenListLine({ collectionAddress, tokenId, onClick }
         <div className={styles.imgPlaceholder} />
       )}
       <Title className={styles.title}>{nftToken.name} - {nftCollection.collectionName}</Title>
-      {!!artist.name && <Chip label={"By " + artist.name} onClick={(e) => {
+      {displayArtist && !!artist.name && <Chip label={"By " + artist.name} onClick={(e) => {
         e.preventDefault();
         e.stopPropagation();
         navigate("/marketplace/artist/" + nftCollection.owner);
       }}/>}
-      <Chip label={`Balance : ${nftToken.userBalance} / ${nftToken.maxSupply} tokens`} />
-      {nftCollection.options.minimumFanTokenRequiredToMint !== "0" && (
-        <Chip label="Only For Fans !" />
+      {displayBalance && (
+        <Chip className={styles.chip} label={`Your balance : ${nftToken.userBalance}`} />
       )}
-      {nftCollection.options.minimumFanTokenRequiredToMint !== "0" && canMint && (
-        <Chip label="mint :)" />
+      {minimumFanTokenRequiredToMint !== 0 && (
+        <Chip className={styles.chip} label="Only For Fans !" />
+      )}
+      {minimumFanTokenRequiredToMint !== 0 && canMint && (
+        <Chip className={styles.chip} label="mint :)" />
       )}
     </div>
   )

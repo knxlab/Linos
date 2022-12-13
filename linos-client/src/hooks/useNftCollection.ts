@@ -4,11 +4,18 @@ import useCurrentAccount from "./useCurrentAccount";
 
 import NftArtifact from '../contracts/ArtistERC1155Token.json';
 
+
+export type NFT_COLLECTION_OPTIONS = {
+  distributionType: 0 | 1;
+  maxMintPerWallerPerToken: number;
+  maxTotalMintPerWallet: number;
+  minimumFanTokenRequiredToMint: number;
+};
 export type NFT_COLLECTION = {
   // uri: string;
   collectionName: string;
   owner: string;
-  options: any;
+  options: NFT_COLLECTION_OPTIONS;
   countTokens: number;
   tokenUri?: string;
 }
@@ -16,10 +23,24 @@ export type NFT_COLLECTION = {
 const DefaultNftCollection: NFT_COLLECTION = {
   collectionName: "",
   owner: "",
-  options: {},
   countTokens: 0,
-  tokenUri: ""
+  tokenUri: "",
+  options: {
+    distributionType: 0,
+    maxMintPerWallerPerToken: 0,
+    maxTotalMintPerWallet: 0,
+    minimumFanTokenRequiredToMint: 0
+  }
 };
+
+function transformOptions(_options: any): NFT_COLLECTION_OPTIONS {
+  return {
+    distributionType: parseInt(_options.distributionType, 10) as (0 | 1),
+    maxMintPerWallerPerToken: parseInt(_options.maxMintPerWallerPerToken, 10),
+    maxTotalMintPerWallet: parseInt(_options.maxTotalMintPerWallet, 10),
+    minimumFanTokenRequiredToMint: parseInt(_options.minimumFanTokenRequiredToMint, 10)
+  }
+}
 export default function useNftCollection({ address, tokenId }: { address?: string; tokenId?: number }): { nftCollection: NFT_COLLECTION; refetch: () => Promise<any>} {
     const [value, setValue] = useState<NFT_COLLECTION>(DefaultNftCollection);
 
@@ -36,7 +57,7 @@ export default function useNftCollection({ address, tokenId }: { address?: strin
       try {
         setValue({
           collectionName: await contract.methods.collectionName().call({ from: account }),
-          options: await contract.methods._options().call({ from: account }),
+          options: transformOptions(await contract.methods._options().call({ from: account })),
           countTokens: await contract.methods.getCountTokens().call({ from: account }),
           owner: await contract.methods.owner().call(),
 
@@ -53,6 +74,8 @@ export default function useNftCollection({ address, tokenId }: { address?: strin
     useEffect(() => {
         load();
     }, [load]);
+
+    console.log("nftCollection", value);
 
     return {nftCollection: value, refetch: load};
 }

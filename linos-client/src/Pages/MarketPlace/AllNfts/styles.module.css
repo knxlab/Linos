@@ -1,0 +1,7 @@
+.artistsContainer {
+  display: flex;
+  flex-direction: row;
+}
+.artistCard {
+  margin-right: 20px;
+}

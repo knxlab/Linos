@@ -17,3 +17,20 @@
 .title {
   flex: 1;
 }
+
+.imgContainer {
+  width: 100px;
+  height: 100%;
+  margin-right: 10px;
+  padding: 5px;
+  padding-left: 0px;
+}
+.imgPlaceholder {
+  width: 100px;
+  height: 100%;
+  background-color: gray;
+}
+
+.chip {
+  margin-left: 10px
+}

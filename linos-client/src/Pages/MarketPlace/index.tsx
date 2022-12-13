@@ -1,14 +1,11 @@
-import { Box, Toolbar } from "@mui/material";
+import { Box } from "@mui/material";
 import { Outlet } from "react-router-dom";
-import AppBar from "../../components/AppBar";
-import Sidebar from "./Sidebar";
+import ResponsiveAppBar from "./AppBar";
 
 
 export default function MarketPlace() {
   return (
     <Box id="App" sx={{ display: 'flex' }}>
-
-        <Sidebar />
 
         <Box component="main"
             sx={{
@@ -18,9 +15,7 @@ export default function MarketPlace() {
                 position: 'relative',
             }}
         >
-          <AppBar title={"Linos Marketplace"}/>
-          <Toolbar />
-
+          <ResponsiveAppBar />
           <Outlet />
         </Box>
     </Box>

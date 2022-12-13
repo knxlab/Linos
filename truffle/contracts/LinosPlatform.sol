@@ -11,6 +11,11 @@ import "./ListenToken.sol";
 
 contract LinosPlatform is LinosPlatformInterface, Ownable {
 
+    event ArtistRegistered (
+        address artistAddress,
+        string name
+    );
+
     address public listenTokenAddress;
     address public nftFactoryAddress;
     address public nftMarketPlaceAddress;
@@ -81,6 +86,7 @@ contract LinosPlatform is LinosPlatformInterface, Ownable {
             address(this)
         );
         artists[msg.sender] = Artist(_artistName, address(artistFanToken), true, true);
+        emit ArtistRegistered(msg.sender, _artistName);
     }
 
     function registerAsUser(

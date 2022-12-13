@@ -86,6 +86,21 @@ module.exports = {
     //  gas: 4698712,
     //  gasPrice: 25000000000
     },
+    preprod: {
+      host: "51.91.144.189",
+      port: 8545,
+      network_id: "1337",
+      production: false,
+      provider: function() {
+        return new HDWalletProvider({
+          pollingInterval: 1000,
+          mnemonic: {
+            phrase: "damage enough similar adjust wealth large april pulp happy hip repair curve"
+          },
+          providerOrUrl: "http://51.91.144.189:8545",
+        })
+      }
+    },
     goerli: {
       provider: function() {
         return new HDWalletProvider({

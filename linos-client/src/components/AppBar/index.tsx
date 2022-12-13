@@ -2,9 +2,9 @@ import { AppBar as MaterialAppBar, Chip, Toolbar, Typography } from '@mui/materi
 import React from 'react';
 import useCurrentAccount from '../../hooks/useCurrentAccount';
 import Jazzicon, { jsNumberForAddress } from 'react-jazzicon';
-import DarkModeSwitch from './DarkModeSwitch';
 import styles from './styles.module.css';
 import { useLinosContext } from '../../contexts/Linos/Context';
+import DarkModeSwitch from '../DarkModeSwitch';
 
 function AccountChip({ address }: { address: string }) {
     return (

@@ -8,6 +8,7 @@ import useCurrentAccount from "../../../hooks/useCurrentAccount";
 import { useEvents } from "../../../hooks/useEvent";
 import useFanTokenBalance from "../../../hooks/useFanTokenBalance";
 import ContainerFullHeightFlex from "../../../Layout/ContainerFullHeightFlex";
+import Title from "../../../Layout/Title";
 import styles from './styles.module.css';
 
 export default function ArtistPage() {
@@ -28,9 +29,10 @@ export default function ArtistPage() {
 
   return (
     <ContainerFullHeightFlex className={styles.container}>
-      <AppBar title={artist.name + " - All Nft Collections"} />
 
       <ContainerFullHeightFlex hasToolBar className={styles.flexAndGrow}>
+
+        <Title>{artist.name + " - All Nft Collections"}</Title>
 
         <div className={styles.actionContainer}>
           <Chip label={`${fanTokenBalance} ${symbol}`} style={{marginRight: '10px'}} />
