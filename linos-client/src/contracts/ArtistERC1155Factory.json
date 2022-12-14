@@ -9262,7 +9262,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.10",
-  "updatedAt": "2022-12-13T20:19:00.078Z",
+  "updatedAt": "2022-12-14T10:40:36.372Z",
   "networkType": "ethereum",
   "devdoc": {
     "details": "If the contract is already deployed for an _artistName, it will revert.",

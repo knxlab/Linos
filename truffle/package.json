@@ -20,10 +20,13 @@
     "solc": "solc --help",
     "migrate-dev": "truffle migrate --network=development",
     "migrate-preprod": "truffle migrate --network=preprod",
+    "migrate-preprod2": "truffle migrate --network=preprod2",
     "seeds-dev": "truffle exec scripts/seeds.js --network development",
     "seeds-preprod": "truffle exec scripts/seeds.js --network preprod",
+    "seeds-preprod2": "truffle exec scripts/seeds.js --network preprod2",
     "mint-linos-dev": "truffle exec scripts/mint-linos.js --network development",
     "mint-linos-preprod": "truffle exec scripts/mint-linos.js --network preprod",
+    "mint-linos-preprod2": "truffle exec scripts/mint-linos.js --network preprod2",
     "migrate-goerli": "truffle migrate --network=goerli"
   },
   "author": "",

@@ -101,6 +101,21 @@ module.exports = {
         })
       }
     },
+    preprod2: {
+      host: "preprod.linos.wtf",
+      port: 9545,
+      network_id: "9999337",
+      production: false,
+      provider: function() {
+        return new HDWalletProvider({
+          pollingInterval: 1000,
+          mnemonic: {
+            phrase: "snow summer mother almost matrix boost pony cloth dune blush balance race"
+          },
+          providerOrUrl: "https://preprod.linos.wtf:9545",
+        })
+      }
+    },
     goerli: {
       provider: function() {
         return new HDWalletProvider({

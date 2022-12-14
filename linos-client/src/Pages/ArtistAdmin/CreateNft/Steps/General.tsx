@@ -6,10 +6,6 @@ import FormLineWithTitle from '../../../../Layout/Form/FormLineWithTitle';
 import { NFTConfig, NFTTypes } from '../types';
 import styles from './styles.module.css';
 
-import { useLinosContext } from '../../../../contexts/Linos/Context';
-import useCurrentAccount from '../../../../hooks/useCurrentAccount';
-import { useNavigate } from 'react-router-dom';
-
 
 export default function CreateNftStepGeneral({
   nftConfig,
@@ -19,35 +15,8 @@ export default function CreateNftStepGeneral({
   onChangeConfig: (nftConfig: NFTConfig) => any;
 }) {
 
-  const navigate = useNavigate();
-  const account = useCurrentAccount();
-  const { linosNftFactoryContract } = useLinosContext();
-
-  const createFake = async () => {
-    const resultNft = await linosNftFactoryContract.methods.createNFTCollection(
-      "ipfs://bafybeifkrca6zzfn5hggak2jbbjddzwhaj4b3svtwjr4lrzlcisnpb6mpm/linos/{id}",
-      "Test NFT Collection DROP",
-      ["Apple", "Etam", "Nike", "AppleStore"],
-      [1, 10, 20, 100],
-      {
-        distributionType: 0,
-        minimumFanTokenRequiredToMint: 0,
-        maxTotalMintPerWallet: 0,
-        maxMintPerWallerPerToken: 0
-      }
-    ).send({ from: account });
-
-    if (resultNft.status) {
-      navigate("/marketplace/all");
-      return;
-    }
-  }
-
   return (
     <ContainerFullHeightFlex className={styles.container}>
-
-      <Button onClick={createFake}>Create 3 FAKE</Button>
-
 
       <Alert severity="info" variant='outlined' className={styles.formLine}>
         <AlertTitle>{nftConfig.type === 0 ? "SELL" : "DROP"}</AlertTitle>
@@ -72,10 +41,10 @@ export default function CreateNftStepGeneral({
 
 
       <FormLineWithTitle title={"How many Nft ?"} className={styles.formLine}>
-        <Slider value={nftConfig.count} min={1} max={10} onChange={val => onChangeConfig({ ...nftConfig, count: val })} />
+        <Slider value={nftConfig.count} min={1} max={6} onChange={val => onChangeConfig({ ...nftConfig, count: val })} />
       </FormLineWithTitle>
 
-      {nftConfig.count === 10 && <Alert severity="info" variant='outlined' className={styles.formLine}>
+      {nftConfig.count === 6 && <Alert severity="info" variant='outlined' className={styles.formLine}>
         <AlertTitle>You want more ?</AlertTitle>
         {"Go Premium =>"} <Button>Premium Access For Artists</Button>
       </Alert>}
@@ -93,10 +62,10 @@ export default function CreateNftStepGeneral({
 
         {nftConfig.mustBeAFan && (
           <FormLineWithTitle title={"Minimum fantoken to mint"} className={styles.formLine}>
-            <TextField label="Minimum of FanToken needed to mint this collection" variant="outlined" value={nftConfig.minimumFanTokenRequiredToMint} onChange={(e) => {
+            <TextField label="Minimum of FanToken needed to mint this collection" variant="outlined" value={nftConfig.minimumFanTokenRequiredToMint || ""} onChange={(e) => {
               onChangeConfig({
                 ...nftConfig,
-                minimumFanTokenRequiredToMint: parseInt(e.target.value, 10)
+                minimumFanTokenRequiredToMint: parseInt(e.target.value, 10) || 0
               })
             }} />
           </FormLineWithTitle>
