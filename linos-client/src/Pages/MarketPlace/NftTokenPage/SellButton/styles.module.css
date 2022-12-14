@@ -10,3 +10,8 @@
 .saveBtn {
     margin-left: 10px !important;
 }
+
+.priceDetailsContainer div {
+    font-family: Arial;
+    font-style: italic;
+}

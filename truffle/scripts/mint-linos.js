@@ -16,7 +16,8 @@ module.exports = async function (callback) {
   const toAccounts = [
     ...accounts,
     "0x11F3a11a83871BcAc3a5c031f5CE923b0E5f7D6B",
-    "0x97F0B7312D15B616Bc5B5629Ba865bfD3f400f0b"
+    "0x97F0B7312D15B616Bc5B5629Ba865bfD3f400f0b",
+    "0x5D8A7415F29740e7f7375548f9B8Ab5E5545cc42"
   ]
 
   const listenTokenAddress = await linosInstance.listenTokenAddress.call({ from: owner });

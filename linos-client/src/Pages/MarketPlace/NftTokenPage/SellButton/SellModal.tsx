@@ -10,6 +10,8 @@ import Title from '../../../../Layout/Title';
 
 import NftArtifact from '../../../../contracts/ArtistERC1155Token.json';
 import useEth from '../../../../contexts/EthContext/useEth';
+import useNftToken from '../../../../hooks/useNftToken';
+import useArtist from '../../../../hooks/useArtist';
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -47,6 +49,10 @@ export default function SellModal({
 
     const [loading, setLoading] = React.useState(false);
     const { linosNftMarketPlaceContract, linosNftMarketPlaceAddress } = useLinosContext();
+
+     const { nftCollection } = useNftToken({ collectionAddress: tokenAddress, tokenId });
+      const { artist } = useArtist({ address: nftCollection.owner });
+
     const account = useCurrentAccount();
     const { enqueueSnackbar } = useSnackbar();
 
@@ -85,6 +91,12 @@ export default function SellModal({
         } catch (e) {
             setLoading(false);
         }
+    }
+
+    const pricePerTokenFloat = parseFloat(pricePerToken || "0");
+
+    const roundEth = (eth: number) => {
+      return Math.floor(eth*10000) / 10000;
     }
 
     return (
@@ -127,6 +139,14 @@ export default function SellModal({
                       }}
                     />
                   </div>
+
+                  {!!pricePerTokenFloat && (
+                  <div className={styles.priceDetailsContainer}>
+                    <div>For Linos {roundEth(pricePerTokenFloat*0.05)} eth</div>
+                    <div>For {artist.name} {roundEth(pricePerTokenFloat*0.05)} eth</div>
+                    <div>For You {roundEth(pricePerTokenFloat - (pricePerTokenFloat*0.10) - (pricePerTokenFloat*0.3))} eth</div>
+                  </div>
+                  )}
 
                 </div>
                 <div className={styles.modalActions}>
