@@ -8,7 +8,8 @@ import Typography from '@mui/material/Typography';
 import { useState } from "react";
 import { useLinosContext } from "../../contexts/Linos/Context";
 import useCurrentAccount from "../../hooks/useCurrentAccount";
-
+import Faucet from "./Faucet";
+import styles from './styles.module.css';
 
 export default function LoginRegister() {
 
@@ -79,6 +80,7 @@ export default function LoginRegister() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
+          <Faucet className={styles.faucet}/>
           <ButtonGroup disableElevation variant="contained" color="primary">
             <Button color={type==='user' ?"success" : "primary"} onClick={() => setType('user')}>Listener</Button>
             <Button color={type==='artist' ?"success" : "primary"} onClick={() => setType('artist')}>Artist</Button>

@@ -6,6 +6,7 @@ import "../node_modules/@openzeppelin/contracts/access/Ownable.sol";
 
 contract ListenToken is ERC20, Ownable {
 
+    bool _allowTmpMint = false;
     bool _externalTransferEnabled = false;
     address _linosPlatformAddres;
     constructor(address linosPlatformAddress) ERC20("Linos Listen Token", "LINOS") {
@@ -21,10 +22,16 @@ contract ListenToken is ERC20, Ownable {
         address to,
         uint256 amount
     ) override internal virtual {
-        if (msg.sender != owner()) {
+        if (!_allowTmpMint && msg.sender != owner()) {
           require(_externalTransferEnabled, "Token transfers are not allowed");
         }
         super._beforeTokenTransfer(from, to, amount);
+    }
+
+    function faucet() external {
+        _allowTmpMint = true;
+        _mint(msg.sender, 500);
+        _allowTmpMint = false;
     }
 
     function mint(address to, uint256 amount) public onlyOwner {
